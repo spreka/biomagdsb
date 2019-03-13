@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- this is a comment -->
+<optionList>
+  <option>
+    <classifier>RandomTree_Weka</classifier>
+    <description>normalization</description>
+    <type>List</type>
+    <str>%s</str>
+    <expr></expr>
+    <values> '-norm 0' '-norm 1' </values>
+    <default>'-norm 0'</default>
+    <priority>0</priority>
+  </option>
+
+  <option>
+    <classifier>RandomTree_Weka</classifier>
+    <description>exclusive options</description>
+    <type>List</type>
+    <str></str>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>.33 .66</priority>
+    <suboptions>
+      <!-- unlimited depth  -->
+      <optionList>
+	<option>
+	  <classifier>RandomTree_Weka</classifier>
+	  <description>number of attributes</description>
+	  <type>intList</type>
+	  <str>-K %d</str>
+	  <values>0</values>
+	  <default>0</default>
+	  <priority>1</priority>
+	</option>
+      </optionList>
+      <!-- specify the depth limit depth  -->
+      <optionList>
+	<option>
+	  <classifier>RandomTree_Weka</classifier>
+	  <description>number of attributes</description>
+	  <type>intRange</type>
+	  <str>-K %d</str>
+	  <values>1 100</values>
+	  <default>1</default>
+	  <priority>1</priority>
+	</option>
+      </optionList>
+     </suboptions>
+   </option>
+
+   <option>
+    <classifier>RandomTree_Weka</classifier>
+    <description>exclusive options</description>
+    <type>List</type>
+    <str></str>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>1</priority>
+    <suboptions>
+      <!-- unlimited depth  -->
+      <optionList>
+      </optionList>
+      <!-- specify the depth limit depth  -->
+      <optionList>
+	<option>
+	  <classifier>RandomTree_Weka</classifier>
+	  <description>maximum tree depth</description>
+	  <type>intRange</type>
+	  <str>-depth %d</str>
+	  <values>1 100</values>
+	  <default>1</default>
+	  <priority>1</priority>
+	</option>
+      </optionList>
+     </suboptions>
+   </option>
+
+  
+
+   <option>
+    <classifier>RandomForest_Weka</classifier>
+    <description>minimum weight of instances in a leaf</description>
+    <type>realRange</type>
+    <str>-M %0.5g</str>
+    <values>0 20</values>
+    <default>1</default>
+    <priority>1</priority>
+   </option>
+
+   <option>
+    <classifier>RandomForest_Weka</classifier>
+    <description>random seed</description>
+    <type>intRange</type>
+    <str>-S %d</str>
+    <values>0 100000</values>
+    <default>1</default>
+    <priority>-1</priority>
+   </option>
+</optionList>

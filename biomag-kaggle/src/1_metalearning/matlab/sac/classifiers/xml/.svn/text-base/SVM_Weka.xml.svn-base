@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- this is a comment -->
+<optionList>
+  <option>
+    <classifier>SVM_Weka</classifier>
+    <description>complexity</description>
+    <type>exprRange</type>
+    <str>-C %0.5g</str>
+    <expr>2.^n</expr>
+    <!--<values>-4 3</values> -->
+    <values>-4 1</values>
+    <default>0</default>
+    <priority>5</priority>
+  </option>
+  <!--<option>
+    <classifier>SVM_Weka</classifier>
+    <description>filterType</description>
+    <type>intList</type>
+    <str>-N %d</str>
+    <expr></expr>
+    <values>0:1:2</values>
+    <default>2</default>
+    <priority>-1</priority>
+  </option> -->
+  <option>
+    <classifier>SVM_Weka</classifier>
+    <description>epsilon</description>
+    <type>exprRange</type>
+    <str>-P %0.5g</str>
+    <expr></expr>
+    <values>1.0e-12 1.0e-12</values>
+    <default>1.0e-12</default>
+    <priority>-1</priority>
+  </option>
+ <option>
+    <classifier>SVM_Weka</classifier>
+    <description>tolerance</description>
+    <type>realRange</type>
+    <str>-L %0.5g</str>
+    <expr></expr>
+    <values>0.001 0.001</values>
+    <default>0.001</default>
+    <priority>-1</priority>
+  </option>
+  <option>
+    <classifier>SVM_Weka</classifier>
+    <description>Kernel</description>
+    <type>List</type>
+    <str>-K "%s &sub"</str>
+    <expr></expr>
+    <!--<values>{'weka.classifiers.functions.supportVector.PolyKernel', 'weka.classifiers.functions.supportVector.RBFKernel' , 'weka.classifiers.functions.supportVector.Puk'}</values> -->
+    <values>{'weka.classifiers.functions.supportVector.PolyKernel', 'weka.classifiers.functions.supportVector.RBFKernel'}</values>
+    <default>'weka.classifiers.functions.supportVector.PolyKernel'</default>
+    <priority>2</priority>
+    <suboptions>
+      <optionList>
+	<option>
+	  <classifier>SVM_Weka</classifier>
+	  <description>cacheSize</description>
+	  <type>intRange</type>
+	  <str>-C %d</str>
+	  <expr></expr>
+	  <values>250007</values>
+	  <default>250007</default>
+	  <priority>-1</priority>
+	</option>
+	<option>
+	  <classifier>SVM_Weka</classifier>
+	  <description>exponent</description>
+	  <type>intList</type>
+	  <str>-E %d</str>
+	  <expr></expr>
+	  <values>1:4</values>
+	  <default>1</default>
+	  <priority>5</priority>
+	</option>
+      </optionList>
+      <optionList>
+	<option>
+	  <classifier>SVM_Weka</classifier>
+	  <description>cacheSize</description>
+	  <type>intRange</type>
+	  <str>-C %d</str>
+	  <expr></expr>
+	  <values>250007</values>
+	  <default>250007</default>
+	  <priority>-1</priority>
+	</option>
+	<option>
+	  <classifier>SVM_Weka</classifier>
+	  <description>gamma</description>
+	  <type>exprRange</type>
+	  <str>-G %0.5g</str>
+	  <expr>2.^n</expr>
+	  <values>-4 4</values>
+	  <default>1</default>
+	  <priority>5</priority>
+	</option>
+      </optionList>
+ <!--<optionList>
+	<option>
+	  <classifier>SVM_Weka</classifier>
+	  <description>cacheSize</description>
+	  <type>intRange</type>
+	  <str>-C %d</str>
+	  <expr></expr>
+	  <values>250007</values>
+	  <default>250007</default>
+	  <priority>0</priority>
+	</option>
+	<option>
+	  <classifier>SVM_Weka</classifier>
+	  <description>omega</description>
+	  <type>exprRange</type>
+	  <str>-O %0.5g</str>
+	  <expr>2.^n</expr>
+	  <values>-4:4</values>
+	  <default>0</default>
+	  <priority>3</priority>
+	</option>
+	<option>
+	  <classifier>SVM_Weka</classifier>
+	  <description>sigma</description>
+	  <type>exprRange</type>
+	  <str>-S %0.5g</str>
+	  <expr>2.^n</expr>
+	  <values>-4:4</values>
+	  <default>0</default>
+	  <priority>3</priority>
+	</option>
+      </optionList>-->
+    </suboptions>
+  </option>
+  <option>
+    <classifier>SVM_Weka</classifier>
+    <description>Weka SVM Data Normalization (0=Normalize 1=Standardize 2=None)</description>
+    <type>intList</type>
+    <str>-N %d</str>
+    <values> 0 1 2 </values>
+    <default>2</default>
+    <priority>-1</priority>
+  </option>
+ <option>
+    <classifier>SVM_Weka</classifier>
+    <description>Normalization</description>
+    <type>List</type>
+    <str>%s</str>
+    <expr></expr>
+    <values>{'-norm 0', '-norm 1', '-norm 2'}</values>
+    <default>'-norm 0'</default>
+    <priority>-1</priority>
+  </option>
+  <option>
+    <classifier>SVM_Weka</classifier>
+    <description>Random Seed</description>
+    <type>intRange</type>
+    <str>-W %d</str>
+    <values>0 100</values>
+    <default>1</default>
+    <priority>-1</priority>
+  </option>
+  <option>
+    <classifier>SVM_Weka</classifier>
+    <description>Cross Validation</description>
+    <type>intList</type>
+    <str>-V %d</str>
+    <values>-1 2 5 10</values>
+    <default>-1</default>
+    <priority>-1</priority>
+  </option>
+  <option>
+    <classifier>SVM_Weka</classifier>
+    <description>Fit logistic model for probability output</description>
+    <type>Flag</type>
+    <str>-M</str>
+    <values>0 1</values>
+    <default>1</default>
+    <priority>-1</priority>
+  </option>
+</optionList>

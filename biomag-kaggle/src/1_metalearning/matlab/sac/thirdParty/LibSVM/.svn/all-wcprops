@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM
+END
+svm-train
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/svm-train
+END
+svm.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/svm.cpp
+END
+svm-scale
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/svm-scale
+END
+svm.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/svm.h
+END
+svm-predict
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/svm-predict
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/README
+END
+svm-train.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/svm-train.c
+END
+svm.def
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/svm.def
+END
+COPYRIGHT
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/COPYRIGHT
+END
+Makefile.win
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/Makefile.win
+END
+FAQ.html
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/FAQ.html
+END
+heart_scale
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/heart_scale
+END
+svm-scale.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/svm-scale.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/Makefile
+END
+svm-predict.c
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/svm-predict.c
+END

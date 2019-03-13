@@ -1,0 +1,11 @@
+    srcInt='E:\KAGGLE\20180220_V2\testImages';
+    src='E:\KAGGLE\20180220_V2\segmentations\new\';
+    p=5;
+    iter=200;
+    pad=100;
+    dest='E:\KAGGLE\20180220_V2\segmentations\new\out\';
+    tissueList='E:\KAGGLE\20180220_V2\Tissue_imageList.csv';
+    codePath='D:\DEV\VS\VS2015\2d-segmentation-gui\phasefieldGUIv2\x64\Release\';
+    codeName='phasefieldGUIv2PC.exe';
+    GTpath= 'e:\KAGGLE\20180220_V2\GT\all_merged\';
+    runSplitnACnStitchImagesByObjects(src,srcInt,dest,p,iter,tissueList,pad,GTpath,true,codePath,codeName);

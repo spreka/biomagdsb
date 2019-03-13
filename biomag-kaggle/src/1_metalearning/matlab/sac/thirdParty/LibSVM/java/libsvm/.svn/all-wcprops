@@ -1,0 +1,161 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm
+END
+SVC_Q.class
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/SVC_Q.class
+END
+Solver_NU.class
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/Solver_NU.class
+END
+Cache$head_t.class
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/Cache$head_t.class
+END
+svm_print_interface.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/svm_print_interface.java
+END
+svm.m4
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/svm.m4
+END
+Kernel.class
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/Kernel.class
+END
+svm.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/svm.java
+END
+svm_parameter.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/svm_parameter.java
+END
+QMatrix.class
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/QMatrix.class
+END
+svm_model.class
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/svm_model.class
+END
+svm_problem.class
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/svm_problem.class
+END
+ONE_CLASS_Q.class
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/ONE_CLASS_Q.class
+END
+svm_node.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/svm_node.java
+END
+Solver$SolutionInfo.class
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/Solver$SolutionInfo.class
+END
+Cache$1.class
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/Cache$1.class
+END
+svm$1.class
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/svm$1.class
+END
+SVR_Q.class
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/SVR_Q.class
+END
+svm$decision_function.class
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/svm$decision_function.class
+END
+svm_model.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/svm_model.java
+END
+svm_print_interface.class
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/svm_print_interface.class
+END
+svm_problem.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/svm_problem.java
+END
+Cache.class
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/Cache.class
+END
+svm.class
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/svm.class
+END
+svm_parameter.class
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/svm_parameter.class
+END
+Solver.class
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/Solver.class
+END
+svm_node.class
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/java/libsvm/svm_node.class
+END

@@ -1,0 +1,17 @@
+% load data set
+d=sacReadArff('c:\projects\ETH_LMC\doks\journal_ThomasWild_SmallScreen\fig_conf\HK2.arff');
+
+% list of features
+dFeatureList = [17,1,3,14,2,23,13,18,22,4,15,24,12,16,21,20,6,25,10,19,11,5,9,7,8];
+
+dNew = d;
+
+for i=1:25
+
+    pFeatureList = 
+    for j
+    dNew.featureNames{pFeatureList(26-i)} = {};
+    dNew.featureTypes{pFeatureList(26-i)} = {};
+    dNew.instances(:,pFeatureList(26-i)) = [];
+    
+end;

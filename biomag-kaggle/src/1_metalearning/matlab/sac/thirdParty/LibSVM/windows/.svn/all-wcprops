@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/windows
+END
+libsvmwrite.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/windows/libsvmwrite.mexw64
+END
+svm-train.exe
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/windows/svm-train.exe
+END
+libsvmread.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/windows/libsvmread.mexw64
+END
+svmpredict.mexw32
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/windows/svmpredict.mexw32
+END
+libsvm.dll
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/windows/libsvm.dll
+END
+svmtrain.mexw32
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/windows/svmtrain.mexw32
+END
+svmpredict.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/windows/svmpredict.mexw64
+END
+svm-scale.exe
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/windows/svm-scale.exe
+END
+libsvmwrite.mexw32
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/windows/libsvmwrite.mexw32
+END
+libsvmread.mexw32
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/windows/libsvmread.mexw32
+END
+svmtrain.mexw64
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/windows/svmtrain.mexw64
+END
+svm-predict.exe
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/windows/svm-predict.exe
+END
+svm-toy.exe
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/windows/svm-toy.exe
+END

@@ -1,0 +1,16 @@
+{
+    "segmentation_params":
+    {
+        "input_dir":"kaggle_workflow/outputs/2ximages",
+        "output_dir":"kaggle_workflow/outputs/maskrcnn/2x",
+        "model":"kaggle_workflow/maskrcnn/model/mask_rcnn_final.h5",
+        "scale_file":"kaggle_workflow/outputs/cellSizeEstimator/images/scales-rcnn-2x.csv",
+        "separate_masks":"false",
+        "padding":"0.05",
+        "dilation":"1",
+        "cavity_filling":"true",
+        "detection_confidence":"0.60",
+        "detection_nms_threshold":"0.35",
+        "detection_max_instances":"800"
+    }
+}

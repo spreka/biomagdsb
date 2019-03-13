@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- this is a comment -->
+<optionList>
+  <option>
+    <classifier>BayesNet</classifier>
+    <description>use data structure AD tree</description>
+    <type>flag</type>
+    <str>-D</str>
+    <values></values>
+    <default>0</default>
+    <priority>1</priority>
+  </option>
+  <option>
+    <classifier>BayesNet</classifier>
+    <description>search algorithm</description>
+    <type>List</type>
+    <str>-Q %s</str>
+    <values>{'weka.classifiers.bayes.net.search.local.K2 --', 'weka.classifiers.bayes.net.search.local.SimulatedAnnealing --', 'weka.classifiers.bayes.net.search.local.GeneticSearch --'}</values>
+    <default>weka.classifiers.bayes.net.search.local.K2 --</default>
+    <priority>2 2 2</priority>
+    <suboptions>
+      <optionList>
+	<!-- suboptions for K2 search -->
+	<option>
+	  <classifier>BayesNet</classifier>
+	  <description>Max Number of Parents</description>
+	  <type>intList</type>
+	  <str>-P %d</str>
+	  <values>1 2 5 10 100 10000</values>
+	  <default>1</default>
+	  <priority>5 1 1 1 1 1</priority>
+	</option>
+	<option>
+	  <classifier>BayesNet</classifier>
+	  <description>Score Type</description>
+	  <type>List</type>
+	  <str>-S %s</str>
+	  <values>{'BAYES', 'BDeu', 'MDL', 'ENTROPY', 'AIC'}</values>
+	  <default>'BAYES'</default>
+	  <priority>-1</priority>
+	</option>
+      </optionList>
+      <optionList>
+	<!-- suboptions for simulated annealing search-->
+	<option>
+	  <classifier>BayesNet</classifier>
+	  <description>Tstart</description>
+	  <type>exprRange</type>
+	  <expr>2.^n</expr>
+	  <str>-A %0.5g</str>
+	  <values>0 13</values>
+	  <default>3.3219</default>
+	  <priority>2</priority>
+	</option>
+	<option>
+	  <classifier>BayesNet</classifier>
+	  <description>delta</description>
+	  <type>realRange</type>
+	  <str>-D %0.5g</str>
+	  <values>0.80 0.99999</values>
+	  <default>.999</default>
+	  <priority>2</priority>
+	</option>
+	<option>
+	  <classifier>BayesNet</classifier>
+	  <description>runs</description>
+	  <type>exprRange</type>
+	  <expr>round(2.^n)</expr>
+	  <str>-U %d</str>
+	  <values>0 15</values>
+	  <default>13.2877</default>
+	  <priority>2</priority>
+	</option>
+	<option>
+	  <classifier>BayesNet</classifier>
+	  <description>Score Type</description>
+	  <type>List</type>
+	  <str>-S %s</str>
+	  <values>{'BAYES', 'BDeu', 'MDL', 'ENTROPY', 'AIC'}</values>
+	  <default>'BAYES'</default>
+	  <priority>-1</priority>
+	</option>
+	<option>
+	  <classifier>BayesNet</classifier>
+	  <description>Seed</description>
+	  <type>intRange</type>
+	  <str>-R %d</str>
+	  <values>0 1000</values>
+	  <default>1</default>
+	  <priority>-1</priority>
+	</option>
+      </optionList>
+      <optionList>
+	<!-- suboptions for genetic search-->
+	<option>
+	  <classifier>BayesNet</classifier>
+	  <description>descendant population size</description>
+	  <type>exprRange</type>
+	  <expr>round(2.^n)</expr>
+	  <str>-A %d</str>
+	  <values>6 10</values>
+	  <default>6.6439</default>
+	  <priority>2</priority>
+	</option>
+	<option>
+	  <classifier>BayesNet</classifier>
+	  <description>population size</description>
+	  <type>exprRange</type>
+	  <str>-L %d</str>
+	  <expr>round(2.^n)</expr>
+	  <values>2 6</values>
+	  <default> 3.3219</default>
+	  <priority>2</priority>
+	</option>
+	<option>
+	  <classifier>BayesNet</classifier>
+	  <description>use crossover</description>
+	  <type>flag</type>
+	  <str>-C</str>
+	  <values>0 1</values>
+	  <default>1</default>
+	  <priority>.2 .8</priority>
+	</option>
+	<option>
+	  <classifier>BayesNet</classifier>
+	  <description>use mutation</description>
+	  <type>flag</type>
+	  <str>-M</str>
+	  <values>0 1</values>
+	  <default>1</default>
+	  <priority>-1</priority>
+	</option>
+	<option>
+	  <classifier>BayesNet</classifier>
+	  <description>use tournament selection</description>
+	  <type>flag</type>
+	  <str>-O</str>
+	  <values>0 1</values>
+	  <default>0</default>
+	  <priority>-1</priority>
+	</option>
+	<option>
+	  <classifier>BayesNet</classifier>
+	  <description>Score Type</description>
+	  <type>List</type>
+	  <str>-S %s</str>
+	  <values>{'BAYES', 'BDeu', 'MDL', 'ENTROPY', 'AIC'}</values>
+	  <default>'BAYES'</default>
+	  <priority>-1</priority>
+	</option>
+	<option>
+	  <classifier>BayesNet</classifier>
+	  <description>Seed</description>
+	  <type>intRange</type>
+	  <str>-R %d</str>
+	  <values>0 1000</values>
+	  <default>1</default>
+	  <priority>-1</priority>
+	</option>
+      </optionList>
+    </suboptions>
+  </option>
+  <option>
+    <classifier>BayesNet</classifier>
+    <description>estimator</description>
+    <type>List</type>
+    <str>-E %s</str>
+    <values>{'weka.classifiers.bayes.net.estimate.SimpleEstimator --'}</values>
+    <default>weka.classifiers.bayes.net.estimate.SimpleEstimator --</default>
+    <priority>3</priority>
+    <suboptions>
+      <optionList>
+	<!-- suboptions for simple estimator -->
+	<option>
+	  <classifier>BayesNet</classifier>
+	  <description>alpha</description>
+	  <type>realRange</type>
+	  <str>-A %0.5g</str>
+	  <values>0.01 0.99</values>
+	  <default>0.5</default>
+	  <priority>0</priority>
+	</option>
+      </optionList>
+    </suboptions>
+  </option>
+</optionList>

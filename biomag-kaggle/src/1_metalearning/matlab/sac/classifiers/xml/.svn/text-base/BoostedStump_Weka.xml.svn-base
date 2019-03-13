@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- this is a comment -->
+<optionList>
+  <option>
+    <classifier>BoostedStump_Weka</classifier>
+    <description>Number of Iterations</description>
+    <type>exprRange</type>
+    <str>-I %d</str>
+    <expr>round(2.^n)</expr>
+    <values>1 10</values>
+    <default>3.3219</default>
+    <priority>1</priority>
+  </option>
+  <option>
+    <classifier>BoostedStump_Weka</classifier>
+    <description>Random number seed</description>
+    <type>intRange</type>
+    <str>-S %d</str>
+    <values>1 100</values>
+    <default>1</default>
+    <priority>-1</priority>
+  </option>
+  <option>
+    <classifier>BoostedStump_Weka</classifier>
+    <description>Use resampling instead of reweighting</description>
+    <type>flag</type>
+    <str>-Q</str>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>.1</priority>
+  </option>
+  <option>
+    <classifier>BoostedStump_Weka</classifier>
+    <description>Weight threshold</description>
+    <type>exprRange</type>
+    <str>-P %d</str>
+    <expr>round(2.^n)</expr>
+    <values>0 10</values>
+    <default>6.6439</default>
+    <priority>1</priority>
+  </option>
+  <option>
+    <classifier>BoostedStump_Weka</classifier>
+    <description>learner</description>
+    <type>List</type>
+    <str>-W %s</str>
+    <values>{'weka.classifiers.trees.DecisionStump'}</values>
+    <default>'weka.classifiers.trees.DecisionStump'</default>
+    <priority>1</priority>
+  </option>
+</optionList>

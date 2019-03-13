@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/svm-toy/gtk
+END
+callbacks.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/svm-toy/gtk/callbacks.cpp
+END
+interface.c
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/svm-toy/gtk/interface.c
+END
+callbacks.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/svm-toy/gtk/callbacks.h
+END
+main.c
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/svm-toy/gtk/main.c
+END
+interface.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/svm-toy/gtk/interface.h
+END
+svm-toy.glade
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/svm-toy/gtk/svm-toy.glade
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/svm-toy/gtk/Makefile
+END

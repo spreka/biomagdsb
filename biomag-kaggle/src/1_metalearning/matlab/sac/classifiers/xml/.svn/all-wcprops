@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/lmc_dag/!svn/ver/168/projects/sac/classifiers/xml
+END
+BayesNet_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/lmc_dag/!svn/ver/99/projects/sac/classifiers/xml/BayesNet_Weka.xml
+END
+SVM_LibsvmTest.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/lmc_dag/!svn/ver/165/projects/sac/classifiers/xml/SVM_LibsvmTest.xml
+END
+SVM_Libsvm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/lmc_dag/!svn/ver/168/projects/sac/classifiers/xml/SVM_Libsvm.xml
+END
+LogisticRegression_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/lmc_dag/!svn/ver/163/projects/sac/classifiers/xml/LogisticRegression_Weka.xml
+END
+BoostedTree_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/lmc_dag/!svn/ver/167/projects/sac/classifiers/xml/BoostedTree_Weka.xml
+END
+NearestNeighbor_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/lmc_dag/!svn/ver/95/projects/sac/classifiers/xml/NearestNeighbor_Weka.xml
+END
+RBFNetwork_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/lmc_dag/!svn/ver/103/projects/sac/classifiers/xml/RBFNetwork_Weka.xml
+END
+KStar_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/lmc_dag/!svn/ver/99/projects/sac/classifiers/xml/KStar_Weka.xml
+END
+LogitBoost_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/lmc_dag/!svn/ver/104/projects/sac/classifiers/xml/LogitBoost_Weka.xml
+END
+DecisionTree_CART_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/lmc_dag/!svn/ver/162/projects/sac/classifiers/xml/DecisionTree_CART_Weka.xml
+END
+NaiveBayes_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/lmc_dag/!svn/ver/165/projects/sac/classifiers/xml/NaiveBayes_Weka.xml
+END
+KNN_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/lmc_dag/!svn/ver/103/projects/sac/classifiers/xml/KNN_Weka.xml
+END
+BoostedStump_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/lmc_dag/!svn/ver/162/projects/sac/classifiers/xml/BoostedStump_Weka.xml
+END
+DecisionTree_C45_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/lmc_dag/!svn/ver/162/projects/sac/classifiers/xml/DecisionTree_C45_Weka.xml
+END
+MLP_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/lmc_dag/!svn/ver/103/projects/sac/classifiers/xml/MLP_Weka.xml
+END
+Adaboost_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/lmc_dag/!svn/ver/99/projects/sac/classifiers/xml/Adaboost_Weka.xml
+END
+RandomTree_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/lmc_dag/!svn/ver/165/projects/sac/classifiers/xml/RandomTree_Weka.xml
+END
+DecisionTree_BestFirst_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/lmc_dag/!svn/ver/168/projects/sac/classifiers/xml/DecisionTree_BestFirst_Weka.xml
+END
+RandomForest_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/lmc_dag/!svn/ver/103/projects/sac/classifiers/xml/RandomForest_Weka.xml
+END
+SVM_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/lmc_dag/!svn/ver/168/projects/sac/classifiers/xml/SVM_Weka.xml
+END
+DecisionTable_Weka.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/lmc_dag/!svn/ver/165/projects/sac/classifiers/xml/DecisionTable_Weka.xml
+END

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- this is a comment -->
+<optionList>
+  <option>
+    <classifier>LogitBoost_Weka</classifier>
+    <description>ErrorOnProbabilitiesStoppingCriterion</description>
+    <type>flag</type>
+    <str>-P</str>
+    <expr></expr>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>1</priority>
+  </option>
+  <option>
+    <classifier>LogitBoost_Weka</classifier>
+    <description>hueristicStop</description>
+    <type>exprRange</type>
+    <str>-H %d</str>
+    <expr></expr>
+    <values>0:10:200</values>
+    <default>50</default>
+    <priority>-1</priority>
+  </option>
+  <option>
+    <classifier>LogitBoost_Weka</classifier>
+    <description>maxBoostingIterations</description>
+    <type>intList</type>
+    <str>-M %d</str>
+    <expr></expr>
+    <values>{10 100 200 500 750 1000}</values>
+    <default>500</default>
+    <priority>.1 .2 .3 .5 .3 .2</priority>
+  </option>
+  <option>
+    <classifier>LogitBoost_Weka</classifier>
+    <description>AICstoppingCriterion</description>
+    <type>flag</type>
+    <str>-A</str>
+    <expr></expr>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>1</priority>
+  </option>
+  <option>
+    <classifier>LogitBoost_Weka</classifier>
+    <description>noCrossValidationStoppingCriterion</description>
+    <type>flag</type>
+    <str>-S</str>
+    <expr></expr>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>1</priority>
+  </option>
+  <option>
+    <classifier>LogitBoost_Weka</classifier>
+    <description>weight trimming</description>
+    <type>realRange</type>
+    <str>-W %0.5g</str>
+    <expr></expr>
+    <values>0 0.99</values>
+    <default>0</default>
+    <priority>3</priority>
+  </option>
+</optionList>

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# install python3 virtenv (uncomment the next line):
+#virtualenv -p python3 [virtenvName]
+
+# install python packages for Mask R-CNN:
+pip install tensorflow-gpu==1.9.0 scikit-image scikit-learn scipy imgaug IPython keras==2.1.6 opencv-python==3.4.2.17
+
+# install python packages for U-Net:
+pip install torch torchvision matplotlib pandas
+
+# install python packages for pix2pix:
+# pip install torch torchvision
+pip install dominate visdom

@@ -1,0 +1,16 @@
+{
+    "segmentation_params":
+    {
+        "input_dir":"kaggle_workflow/outputs",
+        "output_dir":"kaggle_workflow/outputs/presegment",
+        "model":"kaggle_workflow/maskrcnn/model/mask_rcnn_presegmentation.h5",
+        "separate_masks":"false",
+        "padding":"0.05",
+        "dilation":"1",
+        "cavity_filling":"true",
+        "detection_confidence":"0.7",
+        "detection_nms_threshold":"0.35",
+        "default_image_size":"1024",
+        "detection_max_instances":"800"
+    }
+}

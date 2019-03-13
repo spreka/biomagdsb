@@ -1,0 +1,104 @@
+function d = sacKFolds(d, folds, seed)
+% [dfold inds] = sacKFolds(data, folds, seed)
+% Applies a classifier specified by 'modelStr' to 'data' using k-folds
+% cross-validation where the number of folds is 'folds'.
+%
+% Input:
+%   data:           XX
+%   folds:          The number of folds to split the data.
+%   seed:           [Optional] Seed for random sampling of the folds.
+%
+% Output:
+%   dfold:          XX
+%   inds:           XX
+%
+% See also: sacCrossValidate, sacEvaluate, sacTrain, sacPredict
+
+% From the Suggest a Classifier Library (SAC), a Matlab Toolbox for cell
+% classification in high content screening. http://www.cellclassifier.org/
+% Copyright © 2011 Kevin Smith and Peter Horvath, Light Microscopy Centre 
+% (LMC), Swiss Federal Institute of Technology Zurich (ETHZ), Switzerland. 
+% All rights reserved.
+%
+% This program is free software; you can redistribute it and/or modify it 
+% under the terms of the GNU General Public License version 2 (or higher) 
+% as published by the Free Software Foundation. This program is 
+% distributed WITHOUT ANY WARRANTY; without even the implied warranty of 
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU 
+% General Public License for more details.
+
+
+if ~exist('folds', 'var')
+    folds = 10;
+end
+
+if folds < 1
+    error('Number of folds must be >= 1');
+end
+
+N = size(d.instances,1);
+allInstances = 1:N;
+instancePool = 1:N;
+inds = cell(1,folds);
+%dfold = cell(1,folds);
+
+
+% seed the random stream
+ver = version('-release');  % get the matlab version
+if str2double(ver(1:4)) >= 2009
+    defaultStream = RandStream.getDefaultStream;
+    savedState = defaultStream.State;
+    if exist('seed', 'var')
+        stream0 = RandStream('mt19937ar', 'Seed', seed);
+        RandStream.setDefaultStream(stream0);
+    end
+else
+    savedState = rand('twister');
+    rand('twister', seed); %#ok<*RAND>
+end
+
+for k = 1:folds
+    n = min( round(N/folds), length(instancePool));
+    
+    inds{k} = randsample(instancePool, n);
+    instancePool = setdiff(instancePool, inds{k});
+    
+    %disp( [ num2str(length(instancePool)) '   ' num2str(n)]);
+    
+    test{k} = inds{k};
+    
+    if folds > 1
+        train{k} = setdiff(allInstances, inds{k});
+    else
+        train{k} = test{k};
+    end
+
+    %[intersect(train{k}, test{k})  numel(train{k}) + numel(test{k})]
+    
+end
+
+d.trainFolds = train;
+d.testFolds = test;
+
+% restore the original randstream
+if str2double(ver(1:4)) >= 2009
+    defaultStream = RandStream.getDefaultStream;
+    defaultStream.State = savedState;
+else
+    rand('seed', savedState);
+end
+
+%keyboard;
+
+
+
+
+
+    %[intersect(train{k}, test{k})  numel(train{k}) + numel(test{k})]
+    
+%     dtemp = d;
+%     dtemp.fold = k;
+%     dtemp.instances = dtemp.instances(inds{k},:);
+%     dtemp.labels = dtemp.labels(inds{k},:);
+%     dfold{k} = dtemp;
+%     dfold{k}

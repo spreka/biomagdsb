@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/matlab
+END
+svmpredict.c
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/matlab/svmpredict.c
+END
+svmpredict.mexa64
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/matlab/svmpredict.mexa64
+END
+svmtrain.c
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/matlab/svmtrain.c
+END
+svm_model_matlab.c
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/matlab/svm_model_matlab.c
+END
+svmtrain.mexa64
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/matlab/svmtrain.mexa64
+END
+libsvmwrite.c
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/matlab/libsvmwrite.c
+END
+make.m
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/matlab/make.m
+END
+libsvmread.c
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/matlab/libsvmread.c
+END
+libsvmwrite.mexa64
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/matlab/libsvmwrite.mexa64
+END
+libsvmread.mexa64
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/matlab/libsvmread.mexa64
+END
+svm_model_matlab.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/matlab/svm_model_matlab.h
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/matlab/Makefile
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/lmc_dag/!svn/ver/110/projects/sac/thirdParty/LibSVM/matlab/README
+END

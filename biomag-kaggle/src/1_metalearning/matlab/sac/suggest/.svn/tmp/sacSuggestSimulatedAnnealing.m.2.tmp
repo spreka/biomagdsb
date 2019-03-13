@@ -1,0 +1,173 @@
+function [cmds OPTs Es] = sacSuggestSimulatedAnnealing(classifier, N, d, options)
+
+
+
+% From the Suggest a Classifier Library (SAC), a Matlab Toolbox for cell
+% classification in high content screening. http://www.cellclassifier.org/
+% Copyright © 2011 Kevin Smith and Peter Horvath, Light Microscopy Centre 
+% (LMC), Swiss Federal Institute of Technology Zurich (ETHZ), Switzerland. 
+% All rights reserved.
+%
+% This program is free software; you can redistribute it and/or modify it 
+% under the terms of the GNU General Public License version 2 (or higher) 
+% as published by the Free Software Foundation. This program is 
+% distributed WITHOUT ANY WARRANTY; without even the implied warranty of 
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU 
+% General Public License for more details.
+
+
+% number of simulations to compete in parallel
+K = 4;
+
+
+
+[OPT cmd] = sacGetDefaultOptions(classifier);
+OPT = sacAssignSearchWeights(OPT);
+
+
+
+%[OPT IDs w] = sacAssignOptionID(OPT);
+Nk = max(1, round(N/K));
+
+
+% prepare an initial set of OPT states
+OPTlist = cell(K,1);
+%cmds = cell(K,1);
+
+OPTlist{1} = OPT;
+%cmds{1} = cmd;
+for k = 2:K
+    [cmd OPT] = sacGenerateRandomOptions(OPT, 1);
+    OPTlist{k} = OPT;
+    %cmds{k} = cmd;
+end
+
+
+% % randomly sample a state to modify
+% id = randsample(IDs, 1, true, w);
+% OPTnew = sacResampleOptionValue(OPTlist{1}, id);
+% keyboard;
+
+
+
+parfor k = 1:K
+    sacInitJava;
+    [mdl{k}, OPTs{k}, Es(k), cmds{k}] = simAnneal(OPTlist{k}, classifier, Nk, d, k);
+end
+
+%keyboard;
+
+
+
+
+
+function [mdl, bestOPT, bestE, bestcmd] = simAnneal(OPT, classifier, N, d, k)
+
+i = 1;
+cmd = sacOpt2String(OPT);
+str = [classifier ' ' cmd];
+[y,p] = sacCrossValidate(str, d, 5, 1);  %#ok<*ASGLU>
+[E(i) s] = sacEvaluate(d.labels, p, '-ACC -waAU -q');
+Acc(i) = E(i).ACC;
+AUC(i) = E(i).waAU;
+
+currAcc = E(i).ACC;
+currAUC = E(i).waAU;
+currcmd = cmd;
+bestAcc = E(i).ACC;
+bestcmd = cmd;
+bestOPT = OPT;
+bestE = E;
+
+% TODO: return the best classifier MDL!
+mdl = [];
+
+
+% if ~isempty(cmd)
+%     fprintf('---- ACC = %0.4f, AUC = %0.4f  options: %s\n', E(i).ACC, E(i).waAU, cmd);
+% else
+%     fprintf('---- ACC = %0.4f, AUC = %0.4f  options: %s\n', E(i).ACC, E(i).waAU, []);
+% end
+
+
+% TODO: come up with a better annealing schedule!
+%Temp = .5:(20-.5)/(N-1):20;
+Temp = 20:-(20-.5)/(N-1):.5;
+
+for i = 2:N
+    
+
+    
+    % get a list of possible IDs and sample weights
+    [OPT IDs w] = sacAssignOptionID(OPT);
+    
+    % sample an option to change
+    id = randsample(IDs, 1, true, w);
+%     disp(['i = ' num2str(i) ', selected id=' num2str(id) ]);
+
+    % modify the option
+    OPTnew = sacResampleOptionValue(OPT, id);
+    cmd = sacOpt2String(OPTnew);
+    
+    str = [classifier ' ' cmd];
+    [y,p] = sacCrossValidate(str, d, 5, 1);  %#ok<*ASGLU>
+    [E(i) s] = sacEvaluate(d.labels, p, '-ACC -waAU -q');
+    Acc(i) = E(i).ACC;
+    AUC(i) = E(i).waAU;
+
+    
+%     fprintf('  current: ACC = %0.4f, AUC = %0.4f  options: %s\n', currAcc, currAUC, currcmd);
+%     fprintf(' proposed: ACC = %0.4f, AUC = %0.4f  options: %s\n', E(i).ACC, E(i).waAU, cmd);
+%     fprintf('     best: ACC = %0.4f\n', bestAcc);     
+    
+    if Acc(i) >= bestAcc
+        bestAcc = Acc(i);
+        bestcmd = cmd;
+        bestOPT = OPTnew;
+        bestE = E(i);
+    end
+    
+    if Acc(i) > currAcc
+        currAcc = E(i).ACC;
+        currAUC = E(i).waAU;
+        currcmd = cmd;
+        OPT = OPTnew;
+%         disp('AUTOMATICALLY ACCEPTED!');
+    else
+        a = exp( (E(i).ACC - currAcc) );
+%         disp(  ['    ratio= ' num2str(a) ', Temp = ' num2str(Temp(i)) ', a* = ' num2str(a / Temp(i))]);
+        a = a * Temp(i);
+        
+        r = rand;
+        if r < a
+            currAcc = E(i).ACC;
+            currAUC = E(i).waAU;
+            currcmd = cmd;
+            OPT = OPTnew;
+%             disp('ACCEPTED!');
+        else
+%             disp('REJECTED!');
+        end
+    end
+    
+    %disp(' ' );
+    %disp(' --------------------- ');
+    %disp(' ');
+    
+    %keyboard;
+    
+    %currAcc = E(i).ACC;
+    %currAUC = E(i).waAU;
+
+    
+    %keyboard;
+end
+
+
+
+fprintf('optimal SA(%d):  ACC = %0.4f  options: %s\n', k, bestAcc, bestcmd);
+ 
+
+
+%keyboard;
+

@@ -1,0 +1,36 @@
+{
+    "train_params":
+    {
+        "train_dir":"kaggle_workflow/outputs/train_maskrcnn",
+        "input_model":"kaggle_workflow/maskrcnn/model/mask_rcnn_coco.h5",
+        "blank_mrcnn":"true",
+        "output_model":"kaggle_workflow/outputs/model/mask_rcnn_trained.h5",
+        "epoch_groups":
+        [
+            {
+                "layers":"all",
+                "epochs":"1",
+                "learning_rate":"0.001"
+            },
+            {
+                "layers":"5+",
+                "epochs":"1",
+                "learning_rate":"0.0005"
+            },
+            {
+                "layers":"heads",
+                "epochs":"1",
+                "learning_rate":"0.0001"
+            }
+        ],
+        "step_ratio":"1.0",
+        "show_inputs":"false",
+        "random_augmentation_level":"0",
+        "train_to_val_seed":"0",
+        "train_to_val_ratio":"0.0",
+        "use_eval_in_val":"false",
+        "detection_nms_threshold":"0.35",
+        "rpn_nms_threshold":"0.55",
+        "image_size":"1024"
+    }
+}

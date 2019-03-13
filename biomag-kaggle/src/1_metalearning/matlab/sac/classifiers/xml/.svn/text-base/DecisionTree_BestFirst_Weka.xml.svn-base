@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- this is a comment -->
+<optionList>
+  <option>
+    <classifier>DecisionTree_BestFirst_Weka</classifier>
+    <description>no Hueristic search</description>
+    <type>flag</type>
+    <str>-H</str>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>.1</priority>
+  </option>
+  <option>
+    <classifier>DecisionTree_BestFirst_Weka</classifier>
+    <description>minimal number of instances at terminal nodes</description>
+    <type>exprRange</type>
+    <str>-M %d</str>
+    <expr>round(2.^n)</expr>
+    <values>0 3</values>
+    <default>1</default>
+    <priority>.5</priority>
+  </option>
+  <option>
+    <classifier>DecisionTree_BestFirst_Weka</classifier>
+    <description>number of folds in internal cross validation</description>
+    <type>intList</type>
+    <str>-N %d</str>
+    <values>2 5 10 20</values>
+    <default>5</default>
+    <priority>.1 .8 .1 0</priority>
+  </option>
+  <option>
+    <classifier>DecisionTree_BestFirst_Weka</classifier>
+    <description>pruning strategy</description>
+    <type>List</type>
+    <str>-P %s</str>
+    <values>{'POSTPRUNED', 'UNPRUNED', 'PREPRUNED'}</values>
+    <default>'POSTPRUNED'</default>
+    <priority>.1</priority>
+  </option>
+  <option>
+    <classifier>DecisionTree_BestFirst_Weka</classifier>
+    <description>random number seed</description>
+    <type>intRange</type>
+    <str>-S %d</str>
+    <values>0 100</values>
+    <default>1</default>
+    <priority>.1</priority>
+  </option>
+  <option>
+    <classifier>DecisionTree_BestFirst_Weka</classifier>
+    <description>training set size</description>
+    <type>realRange</type>
+    <str>-C %0.5g</str>
+    <values>.01 1</values>
+    <default>1</default>
+    <priority>.1</priority>
+  </option>
+  <option>
+    <classifier>DecisionTree_BestFirst_Weka</classifier>
+    <description>error rate or root mean squared </description>
+    <type>flag</type>
+    <str>-R</str>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>.2</priority>
+  </option>
+  <option>
+    <classifier>DecisionTree_BestFirst_Weka</classifier>
+    <description>use Gini index splitting criterion (otherwise information is used)</description>
+    <type>flag</type>
+    <str>-G</str>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>.5</priority>
+  </option>
+  <option>
+    <classifier>DecisionTree_BestFirst_Weka</classifier>
+    <description>use 1se rule to make pruning decisions</description>
+    <type>flag</type>
+    <str>-A</str>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>.5</priority>
+  </option>
+</optionList>

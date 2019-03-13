@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- this is a comment -->
+<optionList>
+  <option>
+    <classifier>DecisionTree_C45_Weka</classifier>
+    <description>use binary splits on nominal attributes</description>
+    <type>flag</type>
+    <str>-B</str>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>1</priority>
+  </option>
+  <option>
+    <classifier>DecisionTree_C45_Weka</classifier>
+    <description>minimum number of instances per leaf</description>
+    <type>exprRange</type>
+    <str>-M %d</str>
+    <expr>round(2.^n)</expr>
+    <values>0 3</values>
+    <default>1</default>
+    <priority>1</priority>
+  </option>
+  <option>
+    <classifier>DecisionTree_C45_Weka</classifier>
+    <description>use reduced error pruning instead of C4.5 pruning</description>
+    <type>List</type>
+    <str>%s</str>
+    <values>{'-R', '-U', ''}</values>
+    <default>' '</default>
+    <priority>1</priority>
+    <suboptions>
+      <!-- suboptions for reduced error pruning -->
+      <optionList>
+       	  	<option>
+            		<classifier>DecisionTree_C45_Weka</classifier>
+            		<description>random number seed</description>
+    	    		<type>intRange</type>
+    	    		<str>-Q %d</str>
+    	    		<values>0 100</values>
+    	    		<default>1</default>
+    	    		<priority>-1</priority>
+   	  	</option>
+      	  	<option>
+            		<classifier>DecisionTree_C45_Weka</classifier>
+            		<description>number of folds (first is used for pruning, others for tree building)</description>
+    	    		<type>intRange</type>
+    	    		<str>-N %d</str>
+    	    		<values>2 5</values>
+    	    		<default>3</default>
+    	    		<priority>1</priority>
+   	       </option>
+		<option>
+    			<classifier>DecisionTree_C45_Weka</classifier>
+    			<description>do not consider subtree operation when pruning</description>
+    			<type>flag</type>
+    			<str>-S</str>
+    			<values>0 1</values>
+    			<default>0</default>
+    			<priority>1</priority>
+  		</option>
+      </optionList>
+      <!-- suboptions for no pruning -->
+      <optionList>
+      </optionList>
+      <!-- suboptions for C4.5 pruning -->
+      <optionList>
+       	  <option>
+    		<classifier>DecisionTree_C45_Weka</classifier>
+    			<description>confidence factor used for pruning (small values incur more pruning)</description>
+    			<type>exprRange</type>
+    			<str>-C %0.5g</str>
+    			<expr>2.^n</expr>
+    			<values>-8 -1</values>
+    			<default>-2</default>
+    			<priority>1</priority>
+  		</option>
+  		<option>
+    			<classifier>DecisionTree_C45_Weka</classifier>
+    			<description>do not consider subtree operation when pruning</description>
+    			<type>flag</type>
+    			<str>-S</str>
+    			<values>0 1</values>
+    			<default>0</default>
+    			<priority>1</priority>
+  		</option>
+      </optionList>
+    </suboptions>
+  </option>
+  <option>
+    <classifier>DecisionTree_C45_Weka</classifier>
+    <description>smooth leaves based on Laplace</description>
+    <type>flag</type>
+    <str>-A</str>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>1</priority>
+  </option>
+</optionList>
+

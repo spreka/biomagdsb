@@ -1,0 +1,449 @@
+function [cmds OPTs] = sacSuggestRandom(classifier, N, options)
+
+
+
+% From the Suggest a Classifier Library (SAC), a Matlab Toolbox for cell
+% classification in high content screening. http://www.cellclassifier.org/
+% Copyright © 2011 Kevin Smith and Peter Horvath, Light Microscopy Centre 
+% (LMC), Swiss Federal Institute of Technology Zurich (ETHZ), Switzerland. 
+% All rights reserved.
+%
+% This program is free software; you can redistribute it and/or modify it 
+% under the terms of the GNU General Public License version 2 (or higher) 
+% as published by the Free Software Foundation. This program is 
+% distributed WITHOUT ANY WARRANTY; without even the implied warranty of 
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU 
+% General Public License for more details.
+
+
+
+% TODO: allow options to support additional choices such as: normalization,
+%       type of random distribution, feature selection, etc...
+
+
+if ischar(classifier)
+    % read the classifier's options from XML
+    xmlfile = which([classifier '.xml']);
+    OPT = sacReadXMLFile(xmlfile);
+elseif isstruct(classifier)
+    OPT = classifier;
+else
+    error('Unknown classifier input');
+end
+
+
+% get sampling weights for each option from the priorities
+OPT = sacAssignSearchWeights(OPT);
+
+% loop to get N randomly generated option settings
+if N > 1
+    cmds = cell(N,1);
+    OPTs = cell(N,1);
+    for i = 1:N
+        OPT = sacSelectOptionRandom(OPT, 'rand');  % 'uniform', 'gaussian' or 'rand'
+        cmd = sacOpt2String(OPT);
+        OPTs{i} = OPT;
+        cmds{i} = cmd;    
+    end
+else
+    OPTs = sacSelectOptionRandom(OPT, 'rand'); 
+    cmds = sacOpt2String(OPTs);
+end
+
+
+
+<<<<<<< .mine
+function OPT = RandomSelect(OPT, distribution)
+=======
+% function OPT = sacSelectOptionRandom(OPT, distribution)
+% 
+% for i = 1:numel(OPT)
+%     
+%     if isempty(OPT(i).suboptions)
+%         % there are no sub-options
+%         newval = sacChooseOptionValue(OPT(i).type, OPT(i).values, OPT(i).expr, OPT(i).default, OPT(i).weight, distribution);
+%         OPT(i).selected = newval;
+%         
+%             if iscell(OPT(i).selected)
+%                 % selected should not be a cell!
+%                 error('Error: OPT(i).selected should not be a cell');
+%             end
+%     else
+%         % ------- there are deeper sub-options we must explore ------
+%  
+%         % choose a value for this option
+%         newval = sacChooseOptionValue(OPT(i).type, OPT(i).values, OPT(i).expr, OPT(i).default, OPT(i).weight, distribution);
+%         OPT(i).selected = newval;
+%         
+%         % find the corresponding sub-option to the chosen value
+%         [m v] = sacGetOptionValues(OPT(i), 'max'); %#ok<ASGLU>
+%         %v2 = sacGetOptionVals(OPT(i).type, OPT(i).values, OPT(i).expr);  
+%         %v = sacGetOptionExpr(1, OPT(i).type, OPT(i).values, OPT(i).expr, OPT(i).default, OPT(i).priority);
+%         
+%         
+%         for j = 1:length(v)
+% 
+%             % find the value index that matches SELECTED
+%             if isequal(OPT(i).selected, v{j})
+%                 vind = j;
+%                 break;
+%             end
+%             
+%             % we could not find a match for selected in the list of values
+%             if j == length(v)
+%                 error('Error: selected value is not in list of possible values');
+%             end
+%         end
+%         
+%         % assign values to the sub-options
+%         Tsub = OPT(i).suboptions{vind};
+%         if ~isempty(Tsub)
+%             OPT(i).suboptions{vind} = sacSelectOptionRandom(Tsub, distribution);
+%         end
+%     
+%     end
+% end
+>>>>>>> .r110
+
+for i = 1:numel(OPT)
+    
+    if isempty(OPT(i).suboptions)
+        % there are no sub-options
+        newval = chooseOptionValue(OPT(i).type, OPT(i).values, OPT(i).expr, OPT(i).default, OPT(i).weight, distribution);
+        OPT(i).selected = newval;
+        
+            if iscell(OPT(i).selected)
+                % selected should not be a cell!
+                error('Error: OPT(i).selected should not be a cell');
+            end
+    else
+        % ------- there are deeper sub-options we must explore ------
+ 
+        % choose a value for this option
+        newval = chooseOptionValue(OPT(i).type, OPT(i).values, OPT(i).expr, OPT(i).default, OPT(i).weight, distribution);
+        OPT(i).selected = newval;
+        
+        % find the corresponding sub-option to the chosen value
+        [m v] = sacGetOptionValues(OPT(i), 'max'); %#ok<ASGLU>
+        %v2 = sacGetOptionVals(OPT(i).type, OPT(i).values, OPT(i).expr);  
+        %v = sacGetOptionExpr(1, OPT(i).type, OPT(i).values, OPT(i).expr, OPT(i).default, OPT(i).priority);
+        
+        
+        for j = 1:length(v)
+
+            % find the value index that matches SELECTED
+            if isequal(OPT(i).selected, v{j})
+                vind = j;
+                break;
+            end
+            
+            % we could not find a match for selected in the list of values
+            if j == length(v)
+                error('Error: selected value is not in list of possible values');
+            end
+        end
+        
+        % assign values to the sub-options
+        Tsub = OPT(i).suboptions{vind};
+        if ~isempty(Tsub)
+            OPT(i).suboptions{vind} = RandomSelect(Tsub, distribution);
+        end
+    
+    end
+end
+
+
+
+<<<<<<< .mine
+
+
+
+function newval = chooseOptionValue(type, values, expr, default, weights, distribution)
+
+
+
+switch lower(type)
+    
+    % ----------------- intList ----------------------
+    case 'intlist'
+        if numel(weights) == 1
+            %if (weights == 0) && (numel(weights) == 1)
+            newval = default;
+        else
+            % an intlist should contain a vector of integers
+            v = values;
+            
+            if length(weights) == length(v)
+                % weighted sampling, if possible
+                
+                % TODO: handle all zeros in the weight list
+                w = weights / sum(weights);
+                newval = randsample(v,1,true,w);
+            else
+                % otherwise, uniform sampling
+                newval = randsample(v,1);
+            end
+        end
+        %keyboard;
+        
+        % ----------------- List ----------------------
+    case 'list'
+        %         if weights == 0
+        if numel(weights) == 1
+            newval = default;
+        else
+            % List constains a cell with each possible value
+            v = values;
+
+            if length(weights) == length(v)
+                % weighted sampling, if possible
+                
+                % TODO: handle all zeros in the weight list
+                w = weights / sum(weights);
+                newval = randsample(v,1,true,w);
+            else
+                % otherwise, uniform sampling
+                newval = randsample(v,1);
+            end
+            newval = newval{1};
+        end    
+        
+        
+    % ----------------- flag ----------------------    
+    case 'flag'
+=======
+% 
+% function newval = sacChooseOptionValue(type, values, expr, default, weights, distribution)
+% 
+% 
+% 
+% switch lower(type)
+%     
+%     % ----------------- intList ----------------------
+%     case 'intlist'
+%         if numel(weights) == 1
+%             %if (weights == 0) && (numel(weights) == 1)
+%             newval = default;
+%         else
+%             % an intlist should contain a vector of integers
+%             v = values;
+%             
+%             if length(weights) == length(v)
+%                 % weighted sampling, if possible
+%                 
+%                 % TODO: handle all zeros in the weight list
+%                 w = weights / sum(weights);
+%                 newval = randsample(v,1,true,w);
+%             else
+%                 % otherwise, uniform sampling
+%                 newval = randsample(v,1);
+%             end
+%         end
+%         %keyboard;
+%         
+%         % ----------------- List ----------------------
+%     case 'list'
+%         %         if weights == 0
+%         if numel(weights) == 1
+%             newval = default;
+%         else
+%             % List constains a cell with each possible value
+%             v = values;
+% 
+%             if length(weights) == length(v)
+%                 % weighted sampling, if possible
+%                 
+%                 % TODO: handle all zeros in the weight list
+%                 w = weights / sum(weights);
+%                 newval = randsample(v,1,true,w);
+%             else
+%                 % otherwise, uniform sampling
+%                 newval = randsample(v,1);
+%             end
+%             newval = newval{1};
+%         end    
+%         
+%         
+%     % ----------------- flag ----------------------    
+%     case 'flag'
+% %         if weights == 0
+%         if numel(weights) == 1
+%             newval = default;
+%         else
+%             if length(weights) == length(values)
+%                 w = weights / sum(weights);
+%                 vind = 1:length(values);
+%                 newind = randsample(vind,1,true,w);
+%                 newval = values(newind);
+%             else
+%                 vind = 1:length(values);
+%                 newind = randsample(vind,1);
+%                 newval = values(newind);
+%             end
+%         end
+%         %keyboard;
+%         
+%     % ----------------- expression range ----------------------          
+%     case 'exprrange'
+% 
+%         % TODO: get rid of the expr's here. they are not needed
+%         
+%         if isempty(expr)
+%             expr = 'n';
+%         end
+% 
+>>>>>>> .r110
+%         if weights == 0
+        if numel(weights) == 1
+            newval = default;
+        else
+            if length(weights) == length(values)
+                w = weights / sum(weights);
+                vind = 1:length(values);
+                newind = randsample(vind,1,true,w);
+                newval = values(newind);
+            else
+                vind = 1:length(values);
+                newind = randsample(vind,1);
+                newval = values(newind);
+            end
+        end
+        %keyboard;
+        
+    % ----------------- expression range ----------------------          
+    case 'exprrange'
+
+        % TODO: get rid of the expr's here. they are not needed
+        
+        if isempty(expr)
+            expr = 'n';
+        end
+
+        if weights == 0
+            % if weight == 0, use the default value
+            n = default; %#ok<*NASGU>
+            %newval = eval(expr);
+            newval = n;
+
+        else
+            % otherwise, find the range of values and sample from it
+            min_n = values{1};
+            max_n = values{2};
+            
+            if strcmpi(distribution, 'uniform')
+                newval = sampleUniform(min_n, max_n, expr);
+                
+            elseif strcmpi(distribution, 'gaussian')
+                newval = sampleGaussian(min_n, max_n, default, expr);
+
+            elseif strcmpi(distribution, 'rand')
+                newval = sampleFlip(min_n, max_n, default, expr);
+            else
+                error(['unknown distribution type: ' distribution]);
+            end
+            
+        end
+        %keyboard;
+        
+
+    % ----------------- realRange ----------------------
+    case 'realrange'
+
+        if weights == 0
+            % if weight == 0, use the default value
+            newval = default; %#ok<*NASGU>
+        else
+            min_n = values{1};
+            max_n = values{2};
+            
+            if strcmpi(distribution, 'uniform')
+                newval = sampleUniform(min_n, max_n);
+                
+            elseif strcmpi(distribution, 'gaussian')
+                newval = sampleGaussian(min_n, max_n, default);
+
+            elseif strcmpi(distribution, 'rand')
+                newval = sampleFlip(min_n, max_n, default);
+            else
+                error(['unknown distribution type: ' distribution]);
+            end
+        end
+        
+    % ----------------- intRange ----------------------
+    case 'intrange'
+
+        if weights == 0
+            % if weight == 0, use the default value
+            newval = default; %#ok<*NASGU>
+        else
+            min_n = values{1};
+            max_n = values{2};
+            
+            newval = randi([min_n max_n], 1, 1);
+        end   
+        
+    otherwise
+        error(['unknown option type: ' type]);
+end
+
+
+
+
+
+function newval = sampleUniform(min_n, max_n, expr)
+
+% if exist('expr', 'var')
+%     s = abs(max_n - min_n);
+%     n = s*rand(1) + min_n;
+%     newval = eval(expr);
+% else
+    s = abs(max_n - min_n);
+    newval = s*rand(1) + min_n;
+% end
+
+
+
+function newval = sampleGaussian(min_n, max_n, default, expr)
+
+% if exist('expr', 'var')
+%     stdev = max(  [abs(default - min_n), abs(max_n - default)]);
+%     n = .5*stdev*randn + default;
+%     if n < min_n
+%         n = min_n;
+%     end
+%     if n > max_n
+%         n = max_n;
+%     end
+%     newval = eval(expr);
+% else
+    stdev = max(  [abs(default - min_n), abs(max_n - default)]);
+    newval = .5*stdev*randn + default;
+    if newval < min_n
+        newval = min_n;
+    end
+    if newval > max_n
+        newval = max_n;
+    end
+% end
+                
+                
+
+function newval = sampleFlip(min_n, max_n, default, expr)
+
+r = rand;
+
+% if exist('expr', 'var')
+%     if r > .5
+%         newval = sampleUniform(min_n, max_n, expr);
+%     else
+%         newval = sampleGaussian(min_n, max_n, default, expr);
+%     end
+% else
+    if r > .5
+        newval = sampleUniform(min_n, max_n);
+    else
+        newval = sampleGaussian(min_n, max_n, default);
+    end
+% end
+
+

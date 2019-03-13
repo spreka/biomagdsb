@@ -1,0 +1,48 @@
+function v = sacOptionExpr(k, type, values, expr, default, priority)
+%function v = sacOptionExpr(type, values, expr, default)
+
+
+<<<<<<< .mine
+N = 30;  % the number of points in the grid search
+=======
+% set N, the number of points in the grid search as a product of priority
+% and the factor k
+N = max(1,round(k*priority));
+>>>>>>> .r82
+
+switch type
+    
+    case 'intList'
+        
+        % intList can take an expression as a string, or a list of ints
+        if ischar(values{1})
+            v = eval(values{1});
+            v = num2cell(v);
+        else
+            v = values{1};
+            v = num2cell(v);
+        end
+        
+        
+    case 'realRange'
+        
+        
+    case 'flag'
+        v = values;  % {'off', 'on'};
+        
+    case 'exprRange'
+        
+        if isempty(expr)
+            expr = 'n';
+        end
+        if N > 1
+            n = values{1} :  abs(values{2}-values{1})/(N-1)  : values{2}; %#ok<*NASGU>
+            n = unique([n default]); % ensure that the default value is in the list
+        else
+            n = default;
+        end
+        v = eval(expr);
+        v = num2cell(v);
+        
+        
+end

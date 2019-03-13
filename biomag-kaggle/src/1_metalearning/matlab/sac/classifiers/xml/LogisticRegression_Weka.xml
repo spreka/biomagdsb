@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- this is a comment -->
+<optionList>
+  <option>
+    <classifier>Logistic_Weka</classifier>
+    <description>maximum iterations</description>
+    <type>intRange</type>
+    <str>-M %d</str>
+    <expr></expr>
+    <values>-1 100</values>
+    <default>-1</default>
+    <priority>-1</priority>
+  </option>
+  <option>
+    <classifier>Logistic_Weka</classifier>
+    <description>ridge value</description>
+    <type>exprRange</type>
+    <str>-R %0.5g</str>
+    <expr>2.^n</expr>
+    <values>-30 -1</values>
+    <default>-26.5754</default>
+    <priority>1</priority>
+  </option>
+</optionList>

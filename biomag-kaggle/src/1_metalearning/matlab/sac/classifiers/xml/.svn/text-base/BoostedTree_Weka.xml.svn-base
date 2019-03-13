@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- this is a comment -->
+<optionList>
+  <option>
+    <classifier>BoostedTree_Weka</classifier>
+    <description>Number of Iterations</description>
+    <type>exprRange</type>
+    <str>-I %d</str>
+    <expr>round(2.^n)</expr>
+    <values>0 6</values>
+    <default>0</default>
+    <priority>1.5</priority>
+  </option>
+  <option>
+    <classifier>BoostedTree_Weka</classifier>
+    <description>Random number seed</description>
+    <type>intRange</type>
+    <str>-S %d</str>
+    <values>1 100</values>
+    <default>1</default>
+    <priority>.1</priority>
+  </option>
+  <option>
+    <classifier>BoostedTree_Weka</classifier>
+    <description>Use resampling instead of reweighting</description>
+    <type>flag</type>
+    <str>-Q</str>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>.3</priority>
+  </option>
+  <option>
+    <classifier>BoostedTree_Weka</classifier>
+    <description>Weight threshold</description>
+    <type>exprRange</type>
+    <str>-P %d</str>
+    <expr>round(2.^n)</expr>
+    <values>1 8</values>
+    <default>1</default>
+    <priority>1</priority>
+  </option>
+  <option>
+    <classifier>BoostedTree_Weka</classifier>
+    <description>learner</description>
+    <type>List</type>
+    <str>-W %s</str>
+    <values>{'weka.classifiers.trees.SimpleCart --', 'weka.classifiers.trees.J48 --'}</values>
+    <default>'weka.classifiers.trees.SimpleCart --'</default>
+    <priority>.4 .6</priority>
+    <suboptions>
+      <!-- simpleCart tree suboptions  -->
+      <optionList> 
+	<option>
+	  <classifier>BoostedTree_Weka</classifier>
+	  <description>hueristic</description>
+	  <type>flag</type>
+	  <str>-H</str>
+	  <expr></expr>
+	  <values>{'off', 'on'}</values>
+	  <default>off</default>
+	  <priority>.1</priority>
+	</option>
+        <option>
+          <classifier>BoostedTree_Weka</classifier>
+          <description>minNumObj</description>
+          <type>intRange</type>
+          <str>-M %d</str>
+          <expr></expr>
+          <values>{2 10}</values>
+          <default>5</default>
+          <priority>.5</priority>
+        </option>
+        <option>
+          <classifier>BoostedTree_Weka</classifier>
+          <description>numFoldsPruning</description>
+          <type>intRange</type>
+          <str>-N %d</str>
+          <expr></expr>
+          <values>{2 10}</values>
+          <default>5</default>
+          <priority>.1</priority>
+        </option>
+        <option>
+          <classifier>BoostedTree_Weka</classifier>
+          <description>seed</description>
+          <type>intRange</type>
+          <str>-S %d</str>
+          <expr></expr>
+          <values>{0 1000}</values>
+          <default>1</default>
+          <priority>.1</priority>
+        </option>
+        <option>
+          <classifier>BoostedTree_Weka</classifier>
+          <description>sizePer percentage of training set</description>
+          <type>realRange</type>
+          <str>-C %f</str>
+          <expr></expr>
+          <values>{0.1 1}</values>
+          <default>1</default>
+          <priority>.5</priority>
+        </option>
+        <option>
+	  <classifier>BoostedTree_Weka</classifier>
+	  <description>useOneSE</description>
+	  <type>flag</type>
+	  <str>-A</str>
+	  <expr></expr>
+	  <values>{'off', 'on'}</values>
+	  <default>off</default>
+	  <priority>.2</priority>
+	</option>
+        <option>
+	  <classifier>BoostedTree_Weka</classifier>
+	  <description>do NOT usePrune</description>
+	  <type>flag</type>
+	  <str>-U</str>
+	  <expr></expr>
+	  <values>{'off', 'on'}</values>
+	  <default>off</default>
+	  <priority>.2</priority>
+	</option>
+      </optionList>
+
+      <!-- C45 Tree -->	
+      <optionList>
+          <option>
+    <classifier>DecisionTree_C45_Weka</classifier>
+    <description>use binary splits on nominal attributes</description>
+    <type>flag</type>
+    <str>-B</str>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>.2</priority>
+  </option>
+  <option>
+    <classifier>DecisionTree_C45_Weka</classifier>
+    <description>minimum number of instances per leaf</description>
+    <type>exprRange</type>
+    <str>-M %d</str>
+    <expr>round(2.^n)</expr>
+    <values>0 3</values>
+    <default>1</default>
+    <priority>1</priority>
+  </option>
+  <option>
+    <classifier>DecisionTree_C45_Weka</classifier>
+    <description>use reduced error pruning instead of C4.5 pruning</description>
+    <type>List</type>
+    <str>%s</str>
+    <values>{'-R', '-U', ''}</values>
+    <default>' '</default>
+    <priority>1</priority>
+    <suboptions>
+      <!-- suboptions for reduced error pruning -->
+      <optionList>
+       	  	<option>
+            		<classifier>DecisionTree_C45_Weka</classifier>
+            		<description>random number seed</description>
+    	    		<type>intRange</type>
+    	    		<str>-Q %d</str>
+    	    		<values>0 100</values>
+    	    		<default>1</default>
+    	    		<priority>-1</priority>
+   	  	</option>
+      	  	<option>
+            		<classifier>DecisionTree_C45_Weka</classifier>
+            		<description>number of folds (first is used for pruning, others for tree building)</description>
+    	    		<type>intRange</type>
+    	    		<str>-N %d</str>
+    	    		<values>2 5</values>
+    	    		<default>3</default>
+    	    		<priority>.2</priority>
+   	       </option>
+		<option>
+    			<classifier>DecisionTree_C45_Weka</classifier>
+    			<description>do not consider subtree operation when pruning</description>
+    			<type>flag</type>
+    			<str>-S</str>
+    			<values>0 1</values>
+    			<default>0</default>
+    			<priority>.2</priority>
+  		</option>
+      </optionList>
+      <!-- suboptions for no pruning -->
+      <optionList>
+      </optionList>
+      <!-- suboptions for C4.5 pruning -->
+      <optionList>
+       	  <option>
+    		<classifier>DecisionTree_C45_Weka</classifier>
+    			<description>confidence factor used for pruning (small values incur more pruning)</description>
+    			<type>exprRange</type>
+    			<str>-C %0.5g</str>
+    			<expr>2.^n</expr>
+    			<values>-8 -1</values>
+    			<default>-2</default>
+    			<priority>1</priority>
+  		</option>
+  		<option>
+    			<classifier>DecisionTree_C45_Weka</classifier>
+    			<description>do not consider subtree operation when pruning</description>
+    			<type>flag</type>
+    			<str>-S</str>
+    			<values>0 1</values>
+    			<default>0</default>
+    			<priority>.2</priority>
+  		</option>
+      </optionList>
+    </suboptions>
+  </option>
+  <option>
+    <classifier>DecisionTree_C45_Weka</classifier>
+    <description>smooth leaves based on Laplace</description>
+    <type>flag</type>
+    <str>-A</str>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>.5</priority>
+  </option>
+      </optionList>
+    </suboptions>
+  </option>
+</optionList>

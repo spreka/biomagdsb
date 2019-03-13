@@ -1,0 +1,27 @@
+close all, clear all;
+
+% load a data set
+d = sacReadArff('c:\projects\ETH_LMC\tmp\indiPaper\NuclearImportJournal.arff');
+
+classifierString = {'NaiveBayes', 'MultilayerPerceptron', 'Libsvm', 'LogitBoost', 'RandomForest', 'KNearestNeighbor'};
+    
+try
+matlabpool close;
+end;
+
+matlabpool open;
+
+
+
+for i=1:length(classifierString)        
+    parfor r=1:4
+        [y,p] = sacCrossValidate(classifierString{i}, d, 10);
+        [EvalCurrent s] = sacEvaluate(d.labels, p);    
+        Current(r) = EvalCurrent.ACC;
+    end;
+    ac(i) = mean(Current);
+    acs(i) = std(Current)
+    errorbar(ac, acs); drawnow;
+end;
+
+matlabpool close;

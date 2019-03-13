@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- this is a comment -->
+<optionList>
+  <option>
+    <classifier>KStar_Weka</classifier>
+    <description>Entropy-based auto-blend</description>
+    <type>flag</type>
+    <str>-E</str>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>1</priority>
+  </option>
+  <option>
+    <classifier>KStar_Weka</classifier>
+    <description>Global Blend</description>
+    <type>intRange</type>
+    <str>-B %d</str>
+    <values>0 100</values>
+    <default>20</default>
+    <priority>1</priority>
+  </option>
+  <option>
+    <!-- unnecessary for SAC, missing attributes not allowed -->	
+    <classifier>KStar_Weka</classifier>
+    <description>how to treat missing attributes</description>
+    <type>list</type>
+    <str>-M %s</str>
+    <values>{'a', 'n', 'm', 'd'}</values>
+    <default>'a'</default>
+    <priority>-2</priority>
+  </option>
+</optionList>

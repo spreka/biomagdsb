@@ -1,0 +1,33 @@
+% Example 2
+
+% define an Ensemble classifier (using stacking)
+c.ClassifierType = 'Ensemble_Stacking';
+c.Options = 'RandomForest_Weka';
+c.SubClassifiers(1).ClassifierType = 'DecisionTree_BFP_Weka';
+c.SubClassifiers(1).Options = '';
+c.SubClassifiers(2).ClassifierType = 'KNN_Weka';
+c.SubClassifiers(2).Options = '';
+c.SubClassifiers(3).ClassifierType = 'LogitBoost_Weka';
+c.SubClassifiers(3).Options = '';
+c.SubClassifiers(4).ClassifierType = 'BayesNet_Weka';
+c.SubClassifiers(4).Options = '';
+
+% read a data set
+%d = sacReadArff('segment-test.arff');
+d = sacReadArff('testScreen.arff');
+
+% train the classifier
+[y,p] = sacCrossValidate(c,d,2);
+
+% evaluate the performance of the classifier
+[E s] = sacEvaluate(d.labels, p);
+
+% plot the ROC, Precision-Recall, and Confusion Matrix for each class
+figure;
+sacPlotROC(E.ROCtpr, E.ROCfpr, d.classNames);
+
+figure;
+sacPlotPR(E, d.classNames);
+
+figure;
+sacPlotConfusion(d.labels, p);

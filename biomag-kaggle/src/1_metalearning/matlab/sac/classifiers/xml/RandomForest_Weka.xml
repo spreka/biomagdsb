@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- this is a comment -->
+<optionList>  
+  <option>
+    <classifier>RandomForest_Weka</classifier>
+    <description>features per tree</description>
+    <type>intList</type>
+    <str>-K %d</str>
+    <expr></expr>
+    <values>0:100</values>
+    <default>0</default>
+    <priority>2</priority>
+  </option>
+  <option>
+    <classifier>NaiveBayes_Weka</classifier>
+    <description>exclusive options</description>
+    <type>List</type>
+    <str></str>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>.66 .33</priority>
+    <suboptions>
+      <!-- unlimited depth  -->
+      <optionList>
+	<!--<option>
+	  <classifier>NaiveBayes_Weka</classifier>
+	  <description>maximum tree depth 0=unlimited</description>
+	  <type>intList</type>
+	  <str>-depth %d</str>
+	  <values>0</values>
+	  <default>0</default>
+	  <priority>1</priority>
+	</option> -->
+      </optionList>
+      <!-- specify the depth limit depth  -->
+      <optionList>
+	<option>
+	  <classifier>NaiveBayes_Weka</classifier>
+	  <description>maximum tree depth</description>
+	  <type>intRange</type>
+	  <str>-depth %d</str>
+	  <values>1 100</values>
+	  <default>1</default>
+	  <priority>1</priority>
+	</option>
+      </optionList>
+     </suboptions>
+   </option>
+  <!--<option>
+    <classifier>RandomForest_Weka</classifier>
+    <description>maximum tree depth</description>
+    <type>intList</type>
+    <str>-depth %d</str>
+    <expr></expr>
+    <values>0:20</values>
+    <default>0</default>
+    <priority>1</priority>
+  </option>-->
+   <option>
+    <classifier>RandomForest_Weka</classifier>
+    <description>number of trees</description>
+    <type>exprRange</type>
+    <str>-I %d</str>
+    <expr>round(2.^n)</expr>
+    <values>0 10</values>
+    <default>3.3219</default>
+    <priority>1</priority>
+   </option>
+   <option>
+    <classifier>RandomForest_Weka</classifier>
+    <description>random seed</description>
+    <type>intRange</type>
+    <str>-S %d</str>
+    <values>0 100000</values>
+    <default>1</default>
+    <priority>1</priority>
+   </option>
+</optionList>

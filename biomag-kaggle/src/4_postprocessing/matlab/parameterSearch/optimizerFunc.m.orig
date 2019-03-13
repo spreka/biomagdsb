@@ -1,0 +1,33 @@
+function score = optimizerFunc(params, gtMap, smallScaleImagesMap, bigScaleImagesMap, sumProbMap)
+
+%FMINCON
+%{
+scaleThrsh = round(params(1) * 100);
+probThresh = round(params(2) * 100000);
+erosionRadius = round(params(3) * 10);
+dilationRadius = round(params(4) * 10);
+minSize = round(params(5) * 100);
+%}
+
+%FMINSEARCH
+overlapThresh = params(1)/100;
+probThresh = params(2);
+erosionRadius = round(params(3));
+dilationRadius = round(params(4));
+minSize = params(5);
+minOverlap = params(6)/1000;
+
+outFinalImageMap = mergeUnetAndAll(smallScaleImagesMap, bigScaleImagesMap, sumProbMap, overlapThresh, probThresh, erosionRadius, dilationRadius, minSize, minOverlap);
+scoreMap = evaluation2(gtMap, outFinalImageMap);
+
+%FMINSEARCH
+score = 1 - mean(cell2mat(scoreMap.values));
+fprintf('Score for corrected segmentations (overlapThresh:%0.2f, probTh:%d, er:%dpx, dil:%dpx, min:%dpx, minOverlap:%0.2f): %0.3f\n', overlapThresh, probThresh, erosionRadius, dilationRadius, minSize, minOverlap, 1.0 - score);
+% fprintf(fid,'Score for corrected segmentations (scaleTh:%d, probTh:%d, er:%dpx, dil:%dpx, min:%dpx): %0.3f\n', probThrsh, probThresh, erosionRadius, dilationRadius, minSize, 1.0 - score);
+
+%FMINCON
+%score = mean(cell2mat(scoreMap.values));
+%fprintf('Score for corrected segmentations (scaleTh:%d, probTh:%d, er:%dpx, dil:%dpx, min:%dpx): %0.3f\n', scaleThrsh, probThresh, erosionRadius, dilationRadius, minSize, score);
+%fprintf(fid2,'Score for corrected segmentations (scaleTh:%d, probTh:%d, er:%dpx, dil:%dpx, min:%dpx): %0.3f\n', scaleThrsh, probThresh, erosionRadius, dilationRadius, minSize, score);
+
+end

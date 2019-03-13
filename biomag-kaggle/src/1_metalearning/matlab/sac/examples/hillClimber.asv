@@ -1,0 +1,33 @@
+% optimize classifiers
+
+% load a data set
+%d = sacReadArff('uncoating_time.arff');
+d = sacReadArff('iris.arff');
+
+paramI = 100;
+stepI = 1;
+paramK = 20;
+stepK = 1;
+paramDepth = 10;
+stepDepth = 1;
+
+classifierString = ['RandomForest -I ' num2str(paramI) ' -K ' num2str(paramK) ' -depth ' num2str(paramDepth)];
+[y,p] = sacCrossValidate(classifierString, d, 10);
+[EvalCurrentBest s] = sacEvaluate(d.labels, p);
+
+while 1
+    
+    % partials
+    classifierString = ['RandomForest -I ' num2str(paramI+stepI) ' -K ' num2str(paramK) ' -depth ' num2str(paramDepth)];
+    [y,p] = sacCrossValidate(classifierString, d, 10);
+    [EvalCurrent s] = sacEvaluate(d.labels, p);    
+    delI = EvalCurrentBest.ACC - EvalCurrent.ACC;
+    
+    
+    % current best
+    paramI = paramI + sign(delI)*stepI;
+    classifierString = ['RandomForest -I ' num2str(paramI) ' -K ' num2str(paramK) ' -depth ' num2str(paramDepth)];
+    [y,p] = sacCrossValidate(classifierString, d, 10);
+    [EvalCurrentBest s] = sacEvaluate(d.labels, p, '-ACC');
+    paramI
+end;

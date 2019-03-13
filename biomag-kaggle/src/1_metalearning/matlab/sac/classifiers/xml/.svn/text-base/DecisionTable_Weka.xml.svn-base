@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- this is a comment -->
+<optionList>  
+  <!-- <option>
+    <classifier>DecisionTable_Weka</classifier>
+    <description>cross validation folds (1=leave-one-out)</description>
+    <type>intRange</type>
+    <str>-X %d</str>
+    <values>1 10</values>
+    <default>5</default>
+    <priority>-1</priority>
+  </option>
+  <option>
+    <classifier>DecisionTable_Weka</classifier>
+    <description>search method</description>
+    <type>List</type>
+    <str>-S %s</str>
+    <values>{'"weka.attributeSelection.BestFirst -D 1 -N 5"'}</values>
+    <default>-1</default>
+    <priority>-1</priority>
+  </option>
+  <option>
+    <classifier>DecisionTable_Weka</classifier>
+    <description>should use IBk instead of majority class?</description>
+    <type>flag</type>
+    <str>-I</str>
+    <expr></expr>
+    <values>{'off', 'on'}</values>
+    <default>off</default>
+    <priority>-1</priority>
+  </option> -->
+</optionList>

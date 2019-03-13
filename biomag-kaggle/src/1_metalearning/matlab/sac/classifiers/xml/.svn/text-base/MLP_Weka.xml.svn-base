@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- this is a comment -->
+<optionList>
+  <option>
+    <classifier>MultiLayerPerceptron_Weka</classifier>
+    <description>no decay</description>
+    <type>flag</type>
+    <str>-D</str>
+    <values></values>
+    <default>0</default>
+    <priority>1</priority>
+  </option>
+  <option>
+    <classifier>MultiLayerPerceptron_Weka</classifier>
+    <description>hidden layers</description>
+    <type>List</type>
+    <str>-H %s</str>
+    <values>{'a', 'i', 't', '1'}</values>
+    <default>a</default>
+    <priority>2</priority>
+  </option>
+   <option>
+    <classifier>MultiLayerPerceptron_Weka</classifier>
+    <description>learning rate</description>
+    <type>realRange</type>
+    <str>-L %0.5g</str>
+    <expr></expr>
+    <values>0.0000001  0.95</values>
+    <default>.3</default>
+    <priority>3</priority>
+  </option>
+  <option>
+    <classifier>MultiLayerPerceptron_Weka</classifier>
+    <description>Momentum</description>
+    <type>realRange</type>
+    <str>-M %0.5g</str>
+    <expr></expr>
+    <values>0.0000001  0.95</values>
+    <default>.2</default>
+    <priority>1.5</priority>
+  </option>
+  <option>
+    <classifier>MultiLayerPerceptron_Weka</classifier>
+    <description>NO Nominal to Binary Filter</description>
+    <type>flag</type>
+    <str>-B</str>
+    <values></values>
+    <default>0</default>
+    <priority>-1</priority>
+  </option>
+  <option>
+    <classifier>MultiLayerPerceptron_Weka</classifier>
+    <description>DO NOT Normalize Atributes</description>
+    <type>flag</type>
+    <str>-I</str>
+    <values></values>
+    <default>0</default>
+    <priority>-1</priority>
+  </option>
+  <option>
+    <classifier>MultiLayerPerceptron_Weka</classifier>
+    <description>DO NOT Normalize Numeric Class</description>
+    <type>flag</type>
+    <str>-C</str>
+    <values></values>
+    <default>0</default>
+    <priority>1</priority>
+  </option>
+  <option>
+    <classifier>MultiLayerPerceptron_Weka</classifier>
+    <description>DO NOT allow reset</description>
+    <type>flag</type>
+    <str>-R</str>
+    <values></values>
+    <default>0</default>
+    <priority>.5</priority>
+  </option>
+  <option>
+    <classifier>MultiLayerPerceptron_Weka</classifier>
+    <description>Random Seed</description>
+    <type>realRange</type>
+    <str>-S %0.5g</str>
+    <values>0 100</values>
+    <default>0</default>
+    <priority>-1</priority>
+  </option>
+  <option>
+    <classifier>MultiLayerPerceptron_Weka</classifier>
+    <description>Training Time</description>
+    <type>exprRange</type>
+    <str>-N %d</str>
+    <expr>round(2.^n)</expr>
+    <values>0 10</values>
+    <default>9</default>
+    <priority>2</priority>
+  </option>
+  <option>
+    <classifier>MultiLayerPerceptron_Weka</classifier>
+    <description>Validation size</description>
+    <type>realRange</type>
+    <str>-V %0.5g</str>
+    <values>0 100</values>
+    <default>0</default>
+    <priority>-1</priority>
+  </option>
+  <option>
+    <classifier>MultiLayerPerceptron_Weka</classifier>
+    <description>validation threshold</description>
+    <type>intRange</type>
+    <str>-E %d</str>
+    <values>0 100</values>
+    <default>20</default>
+    <priority>-1</priority>
+  </option>
+</optionList>

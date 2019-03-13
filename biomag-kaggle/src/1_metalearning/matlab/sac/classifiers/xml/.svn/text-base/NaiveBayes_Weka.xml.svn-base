@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- this is a comment -->
+<optionList>
+  <option>
+    <classifier>SVM_Libsvm</classifier>
+    <description>Normalization</description>
+    <type>List</type>
+    <str>%s</str>
+    <expr></expr>
+    <values> '-norm 0' '-norm 1' </values>
+    <default>'-norm 0'</default>
+    <priority>-1</priority>
+  </option>
+  <option>
+    <classifier>NaiveBayes_Weka</classifier>
+    <description>exclusive options</description>
+    <type>List</type>
+    <str></str>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>1</priority>
+    <suboptions>
+      <!-- kernel estimator  -->
+      <optionList>
+	<option>
+	  <classifier>NaiveBayes_Weka</classifier>
+	  <description>use kernel estimator</description>
+	  <type>flag</type>
+	  <str>-K</str>
+	  <values>0 1</values>
+	  <default>0</default>
+	  <priority>1</priority>
+	</option>
+      </optionList>
+      <!-- supervised discretization  -->
+      <optionList>
+	<option>
+	  <classifier>NaiveBayes_Weka</classifier>
+	  <description>use supervised discretization</description>
+	  <type>flag</type>
+	  <str>-D</str>
+	  <values>0 1</values>
+	  <default>0</default>
+	  <priority>1</priority>
+	</option>
+      </optionList>
+     </suboptions>
+   </option>
+</optionList>

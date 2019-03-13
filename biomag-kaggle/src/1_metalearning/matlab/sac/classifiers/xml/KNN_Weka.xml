@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- this is a comment -->
+<optionList>
+  <option>
+    <classifier>KNN_Weka</classifier>
+    <description>Number of nearest neighbors</description>
+    <type>exprRange</type>
+    <str>-K %d</str>
+    <expr>round(2.^n)</expr>
+    <values>0 4</values>
+    <default>0</default>
+    <priority>1</priority>
+  </option>
+  <option>
+    <classifier>KNN_Weka</classifier>
+    <description>Use hold-one-out cross-validation to select the best k value</description>
+    <type>flag</type>
+    <str>-X</str>
+    <values>0 1</values>
+    <default>0</default>
+    <priority>1</priority>
+  </option>
+  <option>
+    <classifier>KNN_Weka</classifier>
+    <description>distance weighting (none, -I 1/distance, -F 1-distance)</description>
+    <type>list</type>
+    <str>%s</str>
+    <values>{' ', '-I', '-F'}</values>
+    <default>' '</default>
+    <priority>1</priority>
+  </option>
+  <option>
+    <classifier>KNN_Weka</classifier>
+    <description>use mean-squared error instead of mean absolute error for regression</description>
+    <type>flag</type>
+    <str>-E</str>
+    <values></values>
+    <default>0</default>
+    <priority>-2</priority>
+  </option>
+  <option>
+    <classifier>KNN_Weka</classifier>
+    <description>search algorithm to find nearest neighbor</description>
+    <type>List</type>
+    <str>-A "%s &sub"</str>
+    <!--<values>{'weka.core.neighboursearch.LinearNNSearch ', 'weka.core.neighboursearch.KDTree ', 'weka.core.neighboursearch.CoverTree '}</values> -->
+    <values>{'weka.core.neighboursearch.LinearNNSearch ', 'weka.core.neighboursearch.KDTree '}</values>
+    <default>'weka.core.neighboursearch.LinearNNSearch '</default>
+    <priority>1</priority>
+    <suboptions>
+	<!-- LinearNNSearch suboptions -->
+    	<optionList>
+		<option>
+			<classifier>KNN_Weka</classifier>
+    			<description>distance function</description>
+    			<type>List</type>
+    			<str>-A \"%s\"</str>
+    			<values>{'weka.core.EuclideanDistance -R first-last'}</values>
+    			<default>'weka.core.EuclideanDistance -R first-last'</default>
+    			<priority>1</priority>
+		</option>
+	</optionList>
+	<!-- KDTree suboptions -->
+	<optionList>
+		<option>
+			<classifier>KNN_Weka</classifier>
+    			<description>distance function</description>
+    			<type>List</type>
+    			<str>-A \"%s\"</str>
+    			<values>{'weka.core.EuclideanDistance -R first-last'}</values>
+    			<default>'weka.core.EuclideanDistance -R first-last'</default>
+    			<priority>1</priority>
+		</option>
+		<option>
+			<classifier>KNN_Weka</classifier>
+    			<description>maximum number of instances in a leaf</description>
+    			<type>intRange</type>
+    			<str>-L %d</str>
+    			<values>1 100</values>
+    			<default>40</default>
+    			<priority>1</priority>
+		</option>
+		<option>
+			<classifier>KNN_Weka</classifier>
+    			<description>max box relative width</description>
+    			<type>realRange</type>
+    			<str>-W %0.5g</str>
+    			<values>0.0001  0.25</values>
+    			<default>0.01</default>
+    			<priority>1</priority>
+		</option>
+		<option>
+			<classifier>KNN_Weka</classifier>
+    			<description>node splitter method</description>
+    			<type>List</type>
+    			<str>-S weka.core.neighboursearch.kdtrees.%s</str>
+    			<values>{'SlidingMidPointOfWidestSide','MidPointOfWidestDimension','MedianOfWidestDimension'}</values>
+    			<default>'SlidingMidPointOfWidestSide'</default>
+    			<priority>1</priority>
+		</option>
+		<option>
+			<classifier>KNN_Weka</classifier>
+    			<description>normalized node width</description>
+    			<type>flag</type>
+    			<str>-N</str>
+    			<values>0 1</values>
+    			<default>1</default>
+    			<priority>1</priority>
+		</option>
+	</optionList>
+	<!-- CoverTree suboptions - cross validation of k selection not supported 
+	<optionList>
+		<option>
+			<classifier>KNN_Weka</classifier>
+    			<description>distance function</description>
+    			<type>List</type>
+    			<str>-A \"%s</str>
+			<enclose>\"</enclose>
+    			<values>{'weka.core.EuclideanDistance -R first-last'}</values>
+    			<default>'weka.core.EuclideanDistance -R first-last'</default>
+    			<priority>1</priority>
+		</option>
+		<option>
+			<classifier>KNN_Weka</classifier>
+    			<description>base for the expansion constant</description>
+    			<type>realRange</type>
+    			<str>-B %0.5g</str>
+    			<values>1.1 10</values>
+    			<default>1.3</default>
+    			<priority>1</priority>
+		</option>
+	</optionList> -->
+    </suboptions>
+  </option>
+</optionList>
+
+  

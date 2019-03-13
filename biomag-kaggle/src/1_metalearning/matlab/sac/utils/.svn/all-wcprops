@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/lmc_dag/!svn/ver/168/projects/sac/utils
+END
+sacCleanOptions.m
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/lmc_dag/!svn/ver/104/projects/sac/utils/sacCleanOptions.m
+END
+sacInitJava.m
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/lmc_dag/!svn/ver/140/projects/sac/utils/sacInitJava.m
+END
+sacDestroyJobs.m
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/lmc_dag/!svn/ver/140/projects/sac/utils/sacDestroyJobs.m
+END
+sacNormHandler.m
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/lmc_dag/!svn/ver/14/projects/sac/utils/sacNormHandler.m
+END
+sacLabels2All.m
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/lmc_dag/!svn/ver/15/projects/sac/utils/sacLabels2All.m
+END
+sacAll2Labels.m
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/lmc_dag/!svn/ver/121/projects/sac/utils/sacAll2Labels.m
+END
+sacGetPaths.m
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/lmc_dag/!svn/ver/142/projects/sac/utils/sacGetPaths.m
+END
+sacGetSupportedList.m
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/lmc_dag/!svn/ver/168/projects/sac/utils/sacGetSupportedList.m
+END
+sacWekaPredictNoProb.m
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/lmc_dag/!svn/ver/14/projects/sac/utils/sacWekaPredictNoProb.m
+END
+sacKFolds.m
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/lmc_dag/!svn/ver/168/projects/sac/utils/sacKFolds.m
+END
+sacWekaTrain.m
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/lmc_dag/!svn/ver/162/projects/sac/utils/sacWekaTrain.m
+END
+sacWekaPredictProb.m
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/lmc_dag/!svn/ver/120/projects/sac/utils/sacWekaPredictProb.m
+END
+sacCheckDistributedToolbox.m
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/lmc_dag/!svn/ver/155/projects/sac/utils/sacCheckDistributedToolbox.m
+END
+sacNormalizeData.m
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/lmc_dag/!svn/ver/165/projects/sac/utils/sacNormalizeData.m
+END
+sacReadXMLFile.m
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/lmc_dag/!svn/ver/103/projects/sac/utils/sacReadXMLFile.m
+END

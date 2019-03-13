@@ -1,0 +1,570 @@
+function v = sacReadXMLFile(xmlfile)
+
+% From the Suggest a Classifier Library (SAC), a Matlab Toolbox for cell
+% classification in high content screening. http://www.cellclassifier.org/
+% Copyright © 2011 Kevin Smith and Peter Horvath, Light Microscopy Centre 
+% (LMC), Swiss Federal Institute of Technology Zurich (ETHZ), Switzerland. 
+% All rights reserved.
+%
+% This program is free software; you can redistribute it and/or modify it 
+% under the terms of the GNU General Public License version 2 (or higher) 
+% as published by the Free Software Foundation. This program is 
+% distributed WITHOUT ANY WARRANTY; without even the implied warranty of 
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU 
+% General Public License for more details.
+
+global classifierStr
+classifierStr = [];
+
+if ~exist(xmlfile, 'file')
+    error('XML file not found');
+end
+
+% load the xml file, turn it into a string
+if ispc
+    xml = urlread(['file:///' xmlfile]);
+    %XML declaration pattern for Win
+    pat = '<\?.*\?>'; 
+else
+    xml = urlread(['file://' xmlfile]);
+    %XML declaration pattern for other
+    pat = '<\?.*\?>'; 
+end;
+
+% remove the XML declaration line, if it exists
+xml = regexprep(xml, pat, '');
+
+% remove any comments from the XML
+% TODO: this might fail if there exists '!' in the parameters somewhere
+pat = '<!--[^!]*-->';
+xmlout = regexprep(xml, pat, '');
+while ~isequal(xmlout,xml)
+    xml = xmlout;
+    xmlout = regexprep(xml, pat, '');
+end
+xml = xmlout;
+
+
+% squeeze multiple whitespaces into one
+xml = regexprep(xml, '[ \t\r\f\v]+', ' ');
+
+%xml = char(xml(:)');
+xml = strrep(xml, char(10), '');
+xml = strrep(xml, char(13), '');
+xml = strrep(xml, '< ', '<');
+xml = strrep(xml, ' >', '>');
+%xml = strrep(xml, '!', '');
+
+
+
+
+v = parseElement(xml);
+v = v.optionList;
+
+%keyboard;
+
+
+
+
+
+
+
+
+
+
+
+function v = parseElement(xml)
+
+v = [];
+
+jo = strfind(xml, '<');
+jc = strfind(xml, '>');
+
+if length(jo)>0 %#ok<*ISMT>
+    while length(jo)>0
+        % find the tag text
+        tag = deblank(xml(jo(1)+1:jc(1)-1));        
+        
+        % check if the tag is valid
+        if ~isTagValid(tag);
+            error(['Invalid tag found: ' tag]);
+        end
+        
+        % find the location of opening and closing tag
+        [openLoc closeLoc closeEndLoc] = findTagCloseLoc(xml, tag);
+        
+        %disp('--------------------------------');
+        
+        
+        % certain tags need to be handled specially (suboptions, optionList)
+        switch lower(tag)
+            
+            case 'optionlist'
+                % extract the xml contained within the tags
+                subxml = xml(openLoc:closeLoc);
+                % parse it
+                v_new = parseElement(subxml);
+                
+                if ~isempty(v)
+                    if ischar(v_new)
+                        % v_new is an empty optionList
+                        v(end+1).optionList = []; %#ok<*AGROW>
+                    else
+                        % v_new contains one or more options
+                        v(end+1).optionList = v_new;
+                    end
+                else
+                    % if v is currently empty
+                    if ischar(v_new)
+                        v.optionList = [];
+                    else 
+                        v.optionList = v_new;
+                    end
+                end
+ 
+   
+            case 'suboptions'
+                % extract the xml contained within the tags
+                subxml = xml(openLoc:closeLoc);
+                % parse it
+                v_new = parseElement(subxml);
+
+                % check that we have the correct number of suboptions
+                v_parent = formatOptions(tag, v);                
+                if length(v_parent.values) ~= length(v_new)
+                    error(['Error: number of suboptions do not match option values for ' tag]);
+                end
+                
+                % assign optionLists to v.suboption cell
+                if ~ischar(v_new)
+                    for i = 1:length(v_new)
+                        v.suboptions{i} = v_new(i).optionList;
+                    end
+                end
+                
+            otherwise
+                % extract the xml contained within the tags
+                subxml = xml(openLoc:closeLoc);
+                % parse it
+                v_new = parseElement(subxml);
+                
+                % if it is an option tag, make certain it is formatted correctly
+                if strcmpi(tag, 'option')
+                    v_new = formatOptions(tag, v_new);
+                    v_new = checkForSubOptions(v_new);
+                    %keyboard;
+                end
+
+                % check for repeated or missing fields, append v_new to v
+                v = checkRepeatedItems(v, v_new, tag);
+                
+                
+        end
+
+        
+        % set up the remaining part of the xml string for continued parsing
+        xml = xml(closeEndLoc:end);
+
+        jo = strfind(xml, '<');
+        jc = strfind(xml, '>');
+    end
+else
+    % End of recursion. Return the value and remove new line characters
+    v = strrep(xml, char(10), '');
+    %keyboard;
+end
+  
+
+
+
+function v = checkForSubOptions(v)
+
+if ~isempty(v.suboptions)
+    subTag = '&sub';
+    %keyboard;
+    if isempty(strfind(v.str, subTag))
+        v.str = [v.str ' ' subTag];
+    end
+end
+
+
+
+function v = formatOptions(tag, v)
+global classifierStr
+
+
+
+% define the default fieldnames and field values
+vTemplate = [];
+vTemplate.classifier = [];
+vTemplate.description = [];
+vTemplate.type = [];
+vTemplate.str = [];
+vTemplate.expr = [];
+vTemplate.values = [];
+vTemplate.default = [];      
+vTemplate.priority =  1;    % the default priority is 1
+vTemplate.suboptions = [];
+%vTemplate.enclose = [];
+
+% fill in any missing fields with default values
+tf = fieldnames(vTemplate);
+for i = 1:length(tf)
+    if ~isfield(v, tf{i})
+        v.(tf{i}) = vTemplate.(tf{i});
+    end
+end
+
+% fill in the classifier type field if it is missing
+if ~isempty(v.classifier)
+    v.classifier = classifierStr;
+end
+if isempty(classifierStr)
+    classifierStr = v.classifier;
+end
+
+%keyboard;
+
+% properly handle the default values for the various types
+switch lower(v.type)
+ 
+    case 'list'
+        % we must remove any quotes from the default value
+        def = v.default;
+        def = strrep(def, '''', '');
+        v.default = def;              
+        
+        val = strtrim(v.values);
+        if ~strcmp(val(1), '{')
+            val = ['{' val];
+        end
+        if ~strcmp(val(end), '}')
+            val = [val '}'];
+        end
+        
+        % NOTE: <str> MUST contain a %s if you want values printed!
+%         % force str to be a string taken from v.values if it is not defined
+%         if isempty(v.str)
+%             v.str = '%s';
+%         end
+        
+        v.values = eval(val);
+
+        % convert the priority to a vector, if it is not turned off
+        v.priority = str2num(v.priority);
+        if numel(v.priority) == 1
+            if v.priority > 0
+                v.priority = v.priority/numel(v.values);
+                v.priority = repmat(v.priority, [1 numel(v.values)]);
+            end
+        end
+        
+        if (length(v.priority) ~= length(v.values) && (v.priority) >= 0)
+            error(['Error: number of priorities (' num2str(length(v.priority)) ') is not equal to number of items in list (' num2str(numel(v.values)) ')' ]);
+        end
+        
+        % format the str tag
+        v.str = formatStr(v.str);
+        
+        % check to make sure that the list does not contain empty strings
+        % or numeric values
+        for i = 1:length(v.values)
+            if isequal(v.values{i}, '')
+                v.values{i} = ' ';
+            end
+            if isnumeric(v.values{i})
+                v.values{i} = num2str(v.values{i});
+            end
+        end
+        
+    case 'intlist'        
+        % the xml should read in a string which somehow specifies a list of
+        % integers. it may be an explicit vector, eg [1 2 3 4 5] or it may
+        % be a string expression which must be evaluated '1:5:100'. The
+        % values are stored as a vector in the values field
+        
+        v.default = str2double(v.default);  % the default value should be a double
+
+        val = strtrim(v.values);
+        val = strrep(val, '{', '');
+        val = strrep(val, '}', '');
+        val = strrep(val, '[', '');
+        val = strrep(val, ']', '');
+        
+        val = str2num(val);
+        
+        for i=1:length(val)
+            if rem(val(i),1) ~= 0
+                error(['Error: non-integer values found in XML: ' tag ' <values>' v.values '</values>']);
+            end
+        end
+        v.values = val;
+
+        % convert the priority to a vector, if it is not turned off
+        v.priority = str2num(v.priority);
+        if numel(v.priority) == 1
+            if v.priority > 0
+                v.priority = v.priority/numel(v.values);
+                v.priority = repmat(v.priority, [1 numel(v.values)]);
+            end
+        end
+        
+        if (length(v.priority) ~= length(v.values) && (v.priority) >= 0)
+            error(['Error: number of priorities (' num2str(length(v.priority)) ') is not equal to number of items in list (' num2str(numel(v.values)) ')' ]);
+        end
+        
+        % format the str tag
+        v.str = formatStr(v.str);
+        
+    case 'exprrange'
+        % the xml should read in a string containing the upper and lower limits
+        % of a range of values WHICH WILL BE MODIFIED BY THE EXPRESSION
+        % CONTAINED in the tag EXPR, eg '2 7', '{2 7}', '[2 7]'. 
+        % These limits are stored in a 1x2 cell containing the limits, i.e. {[2], [7]}
+        
+        % the default value should be a double
+        v.default = str2double(v.default);
+        
+        val = strtrim(v.values);
+        if strcmp(val(1), '{')
+            v.values = eval(val);
+        else
+            v.values = num2cell(str2num(val)); %#ok<*ST2NM>
+        end
+        
+        % check the format of the expression
+        if isempty(v.expr)
+            v.expr = 'n';
+        end
+        if isempty(strfind(v.expr, 'n'))
+            error(['Error: expression should contain "n": ', v.expr]);
+        end
+        n = v.default; %#ok<NASGU>
+        if ~isnumeric(eval(v.expr))
+            error(['Error: expression does not generate numeric values: ' v.expr]);
+        end
+
+        % convert the priority to a double
+        v.priority = str2num(v.priority);
+        
+        % format the str tag
+        v.str = formatStr(v.str);
+        
+    case 'intrange'
+        % the xml should read in a string containing the upper and lower limits
+        % of the range, eg '2 7', '{2 7}', '[2 7]'. We must store a
+        % 1x2 cell containing the limits, i.e. {[2], [7]}
+        
+        % the default value should be a double
+        v.default = str2double(v.default);
+        
+        val = strtrim(v.values);
+        if strcmp(val(1), '{')
+            v.values = eval(val);
+        else
+            v.values = num2cell(str2num(val)); %#ok<*ST2NM>
+        end
+        
+        % make certain EXPR tag is empty
+        v.expr = [];
+
+        % convert the priority to a double
+        v.priority = str2num(v.priority);
+        
+        % format the str tag
+        v.str = formatStr(v.str);
+        
+    case 'realrange'
+    	% the xml should read in a string containing the upper and lower limits
+        % of the range, eg '2 7', '{2 7}', '[2 7]'. We must store a
+        % 1x2 cell containing the limits, i.e. {[2], [7]}
+        
+        % the default value should be a double
+        v.default = str2double(v.default);
+        
+        val = strtrim(v.values);
+        if strcmp(val(1), '{')
+            v.values = eval(val);
+        else
+            v.values = num2cell(str2num(val)); %#ok<*ST2NM>
+        end
+        
+        % make certain EXPR tag is empty
+        v.expr = [];
+       
+        % convert the priority to a double
+        v.priority = str2num(v.priority);
+        
+        % format the str tag
+        v.str = formatStr(v.str);
+        
+    case 'flag'
+        if strcmpi(v.default, 'on')
+            v.default = 1;
+        elseif strcmpi(v.default, 'off')
+            v.default = 0;
+        else
+            v.default = str2double(v.default);
+        end
+        if (v.default ~= 0) && (v.default ~= 1)
+            error(['Error: invalid flag default state (' tag '): ' v.default]);
+        end
+       
+        % values are limited to ON (1) and OFF (0)
+        v.values = [0 1];
+        
+        % convert the priority to a vector, if it is not turned off
+        v.priority = str2num(v.priority);
+        if numel(v.priority) == 1
+            if v.priority > 0
+                v.priority = v.priority/numel(v.values);
+                v.priority = repmat(v.priority, [1 numel(v.values)]);
+            end
+        end
+        
+        % format the str tag
+        v.str = formatStr(v.str);
+        
+    otherwise
+        error(['Invalid type found: ' v.type]);
+end
+
+
+
+function strout = formatStr(strin)
+
+% '\' escape characters do not work with sprintf, they must be replaced
+% with '\\' characters
+if ~isempty(strin)
+    pat = '\\{1,2}';
+    tokens = regexp(strin, pat, 'split');
+    if numel(tokens) > 1
+        str = [];
+        for k = 1:numel(tokens)-1
+            str = [str tokens{k} '\\'];
+        end
+        str = [str tokens{end}];
+        strout = str;
+    else
+        strout = tokens{1};
+    end
+else
+    strout = '';
+end
+
+function [openLoc closeLoc closeEndLoc] = findTagCloseLoc(xml, tag)
+% given an xml string and a tag, finds the location of the close </tag>
+
+openpat = ['<\s*' tag '\s*>'];
+closepat = ['</\s*' tag '\s*>'];
+    
+openLocs = regexpi(xml, openpat, 'end');
+closeLocs = regexpi(xml, closepat, 'start');
+
+locList = sort([openLocs closeLocs]);
+N = length(locList);
+
+openCount = 0;
+closeCount = 0;
+
+for i = 1:N
+    closeLoc = locList(i);
+    
+    if ismember(closeLoc, openLocs)
+        openCount = openCount + 1;
+    else
+        closeCount = closeCount + 1;
+    end
+
+    if openCount == closeCount
+        break;
+    end
+    
+    if i == N
+        error(['Error: could not find the closing tag for: <' tag '>']);
+    end
+end
+    
+% move 1 backwards from the '<' openening of the tag
+closeLoc = closeLoc-1;
+openLoc = openLocs(1)+1;
+
+
+if openLoc > closeLoc
+    closeEndLoc = closeLoc+1 + strfind(xml(closeLoc+1:end), '>');
+    openLoc = [];
+    closeLoc = [];
+else
+    closeEndLoc = closeLoc+1 + strfind(xml(closeLoc+1:end), '>');
+end
+
+closeEndLoc = closeEndLoc(1);
+
+  
+    
+    
+
+function v = checkRepeatedItems(v, v_new, tag)
+% depending on whether v_new is a char or struct, we either set it as a
+% field in v, or append the structure to already existing options in v
+
+
+if ischar(v_new)
+    % if v_new is a char, it contains a field which should be set in v
+    if ~isempty(v_new)
+        v = setfield(v, tag, v_new);
+    else
+        v = setfield(v, tag, []); %#ok<*SFLD>
+    end
+else
+    % If v_new is an existing structure, it is an option, and there may be
+    % several options in an optionList. They should all be appended to v
+    
+    v_new = orderfields(v_new);
+
+    
+    if ~isempty(v)
+        % there are repeated structures
+        
+        try
+            v(end+1) = v_new;
+        catch  %#ok<*CTCH>
+            vf = fieldnames(v);
+            vnewf = fieldnames(v_new);
+            
+            ind = length(v)+1;
+            
+            % check that fields in v exist in v_new
+            for i = 1:length(vf)
+                if isfield(vnewf, vf{i})
+                    v(ind).(vf{i}) = v_new.(vf{i});
+                else
+                    v(ind).(vf{i}) = [];
+                end
+            end
+            
+            % check that fields in v_new exist in v
+            for i = 1:length(vnewf)
+                v(ind).(vnewf{i}) = v_new.(vnewf{i});
+            end
+        end
+    else
+        v = v_new;
+    end
+end
+
+
+
+
+
+function tf = isTagValid(tag)
+% checks if a tag is valid
+
+%valid_tags = {'classifier', 'default', 'description','priority','str', 'type', 'values', 'expr', 'suboptions', 'option', 'optionList', 'enclose'};
+valid_tags = {'classifier', 'default', 'description','priority','str', 'type', 'values', 'expr', 'suboptions', 'option', 'optionList'};
+tf = ismember(tag, valid_tags);
+
+
+
+
+

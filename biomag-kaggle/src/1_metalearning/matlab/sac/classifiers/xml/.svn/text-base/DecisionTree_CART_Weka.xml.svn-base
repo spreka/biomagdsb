@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- this is a comment -->
+<optionList> 
+	<option>
+	  <classifier>DecisionTree_CART_Weka</classifier>
+	  <description>hueristic</description>
+	  <type>flag</type>
+	  <str>-H</str>
+	  <expr></expr>
+	  <values>{'off', 'on'}</values>
+	  <default>off</default>
+	  <priority>1</priority>
+	</option>
+        <option>
+          <classifier>DecisionTree_CART_Weka</classifier>
+          <description>minNumObj</description>
+          <type>intRange</type>
+          <str>-M %d</str>
+          <expr></expr>
+          <values>{2 10}</values>
+          <default>2</default>
+          <priority>1</priority>
+        </option>
+        <option>
+          <classifier>DecisionTree_CART_Weka</classifier>
+          <description>numFoldsPruning</description>
+          <type>intRange</type>
+          <str>-N %d</str>
+          <expr></expr>
+          <values>{2 10}</values>
+          <default>5</default>
+          <priority>-1</priority>
+        </option>
+        <option>
+          <classifier>DecisionTree_CART_Weka</classifier>
+          <description>seed</description>
+          <type>intRange</type>
+          <str>-S %d</str>
+          <expr></expr>
+          <values>{0 1000}</values>
+          <default>1</default>
+          <priority>-1</priority>
+        </option>
+        <option>
+          <classifier>DecisionTree_CART_Weka</classifier>
+          <description>sizePer percentage of training set</description>
+          <type>realRange</type>
+          <str>-C %f</str>
+          <expr></expr>
+          <values>{0.1 1}</values>
+          <default>1</default>
+          <priority>1</priority>
+        </option>
+        <option>
+	  <classifier>DecisionTree_CART_Weka</classifier>
+	  <description>useOneSE</description>
+	  <type>flag</type>
+	  <str>-A</str>
+	  <expr></expr>
+	  <values>{'off', 'on'}</values>
+	  <default>off</default>
+	  <priority>1</priority>
+	</option>
+        <option>
+	  <classifier>DecisionTree_CART_Weka</classifier>
+	  <description>do NOT usePrune</description>
+	  <type>flag</type>
+	  <str>-U</str>
+	  <expr></expr>
+	  <values>{'off', 'on'}</values>
+	  <default>off</default>
+	  <priority>1</priority>
+	</option>
+      </optionList>

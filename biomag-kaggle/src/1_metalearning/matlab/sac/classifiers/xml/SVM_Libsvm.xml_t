@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- this is a comment -->
+<optionList>
+  <option>
+    <classifier>SVM_Libsvm</classifier>
+    <description>SVM Type</description>
+    <type>intList</type>
+    <str>-s %d</str>
+    <values>0:1:4</values>
+    <default>0</default>
+    <priority>-1</priority>
+  </option>
+  <option>
+    <classifier>SVM_Libsvm</classifier>
+   <description>Kernel Type</description>
+    <type>List</type>
+    <str>%s</str>
+    <expr></expr>
+    <values>'-t 0' '-t 1' '-t 2' '-t 3'</values>
+    <default>'-t 2'</default>
+    <priority>2 5 2 .5</priority>
+    <suboptions>
+      <!-- linear kernel suboptions  -->
+      <optionList>
+      </optionList>
+      <!-- polynomial kernel suboptions  -->
+      <optionList>
+	<option>
+	  <classifier>SVM_Libsvm</classifier>
+	  <description>gamma</description>
+	  <type>exprRange</type>
+	  <str>-g %0.5g</str>
+	  <expr>2.^n</expr>
+	  <values>{-4 1}</values>
+	  <default>0</default>
+	  <priority>5</priority>
+	</option>
+        <option>
+	  <classifier>SVM_Libsvm</classifier>
+	  <description>coef0</description>
+	  <type>exprRange</type>
+	  <str>-r %0.5g</str>
+	  <expr>2.^n</expr>
+	  <values>{0 3}</values>
+	  <default>0</default>
+	  <priority>5</priority>
+	</option>
+	<option>
+	  <classifier>SVM_Libsvm</classifier>
+	  <description>poly degree</description>
+	  <type>intList</type>
+	  <str>-d %d</str>
+	  <expr></expr>
+	  <values>2 3 4</values>
+	  <default>2</default>
+	  <priority>5</priority>
+	</option>
+      </optionList>
+     <!-- RBF kernel suboptions  -->
+      <optionList>
+	<option>
+	  <classifier>SVM_Libsvm</classifier>
+	  <description>gamma</description>
+	  <type>exprRange</type>
+	  <str>-g %0.5g</str>
+	  <expr>2.^n</expr>
+	  <values>{-4 1}</values>
+	  <default>0</default>
+	  <priority>5</priority>
+	</option>
+      </optionList>
+     <!-- Sigmoid kernel suboptions  -->
+      <optionList>
+	<option>
+	  <classifier>SVM_Libsvm</classifier>
+	  <description>gamma</description>
+	  <type>exprRange</type>
+	  <str>-g %0.5g</str>
+	  <expr>2.^n</expr>
+	  <values>{-4 1}</values>
+	  <default>0</default>
+	  <priority>5</priority>
+	</option>
+        <option>
+	  <classifier>SVM_Libsvm</classifier>
+	  <description>coef0</description>
+	  <type>exprRange</type>
+	  <str>-r %0.5g</str>
+	  <expr>2.^n</expr>
+	  <values>{0 3}</values>
+	  <default>0</default>
+	  <priority>5</priority>
+	</option>
+      </optionList>
+    </suboptions>
+  </option>
+  <option>
+    <classifier>SVM_Libsvm</classifier>
+    <description>Cost</description>
+    <type>exprRange</type>
+    <str>-c %0.5g</str>
+    <expr>2.^n</expr>
+    <values>{-8 8}</values>
+    <default>1</default>
+    <priority>5</priority>
+  </option>
+  <option>
+    <classifier>SVM_Libsvm</classifier>
+    <description>Memory Cache</description>
+    <type>intRange</type>
+    <str>-m %d</str>
+    <expr></expr>
+    <values>{100 1000}</values>
+    <default>100</default>
+    <priority>-1</priority>
+  </option>
+  <option>
+    <classifier>SVM_Libsvm</classifier>
+    <description>Quiet mode</description>
+    <type>flag</type>
+    <str>-q</str>
+    <expr></expr>
+    <values>{'off' 'on'}</values>
+    <default>on</default>
+    <priority>-1</priority>
+  </option>
+  <option>
+    <classifier>SVM_Libsvm</classifier>
+    <description>Shrinking Huerstics</description>
+    <type>intList</type>
+    <str>-h %d</str>
+    <expr></expr>
+    <values>[0 1] </values>
+    <default>1</default>
+    <priority>.8 .2</priority>
+  </option>
+  <option>
+    <classifier>SVM_Libsvm</classifier>
+    <description>Normalization</description>
+    <type>List</type>
+    <str>%s</str>
+    <expr></expr>
+    <values> '-norm 0' '-norm 1' </values>
+    <default>'-norm 0'</default>
+    <priority>1</priority>
+  </option>
+</optionList>
