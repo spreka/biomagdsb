@@ -37,10 +37,12 @@ set styleTransTrainDir=%outputs_dir%\styleLearnInput
 set splitOptionsFile=%workflow_root%\inputs\clustering\basicOptions_02.csv
 :: default number of synthetic masks for style transfer:
 set masks2generate=1000
+:: object type to generate on masks
+set objType=nuclei
 
 
 echo "PREPARING STYLE TRANSFER INPUT FOR SINGLE EXPERIMENT:"
-matlab -noFigureWindows -nodesktop -nosplash -nojvm -minimize -wait -log -r "addpath('%matlab_scripts%\clustering4singleExperiment'); addpath(genpath('%pipeline_scripts%')); kaggleStartMatlab; prepareClustering4singleClusterFcn('%mergedImagesDir%','%initialSegmentation%','%clusterDir%','%styleTransTrainDir%','%splitOptionsFile%',%masks2generate%); exit;"
+matlab -noFigureWindows -nodesktop -nosplash -nojvm -minimize -wait -log -r "addpath('%matlab_scripts%\clustering4singleExperiment'); addpath(genpath('%pipeline_scripts%')); kaggleStartMatlab; setUpConfigAndDB; prepareClustering4singleClusterFcn('%mergedImagesDir%','%initialSegmentation%','%clusterDir%','%styleTransTrainDir%','%splitOptionsFile%',%masks2generate%,'%objType%'); exit;"
 IF %ERRORLEVEL% NEQ 0 (
     echo ERROR: "Error during style input preparation"
     exit /B 1

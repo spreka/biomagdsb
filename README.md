@@ -35,7 +35,7 @@ You can choose either full prediction with post-processing or fast prediction; t
 
 **Full prediction pipeline with post-processing**
 
-Predicts nuclei first with a presegmenter Mask R-CNN model, estimates cell sizes, predcits with multiple U-Net models and ensembles the results, then uses all of the above in a final post-processing step to refine the contours.
+Predicts nuclei first with a presegmenter Mask R-CNN model, estimates cell sizes, predicts with multiple U-Net models and ensembles the results, then uses all of the above in a final post-processing step to refine the contours.
 To predict nuclei on images please edit either
 
 - `start_prediction_full.bat` (Windows) or 

@@ -36,6 +36,8 @@ STYLE_INPUTS="$OUTPUTS_DIR/styleLearnInput"
 SPLIT_OPTIONS_FILE="$WORKFLOW_ROOT/inputs/clustering/basicOptions_02.csv"
 # default number of synthetic masks for style transfer:
 declare -a MASKS2GENERATE=1000
+# object type to generate on masks
+OBJ_TYPE="nuclei"
 
 
 # check inputs:
@@ -47,7 +49,7 @@ echo "IMAGES_DIR: " $IMAGES_DIR
 
 
 echo "PREPARING STYLE TRANSFER INPUT FOR SINGLE EXPERIMENT:"
-matlab -nodisplay -nodesktop -nosplash -nojvm -r "addpath('${MATLAB_SCRIPTS}/clustering4singleExperiment'); addpath(genpath('${PIPELINE_SCRIPTS}')); kaggleStartMatlab; prepareClustering4singleClusterFcn('${MERGED_IMAGES_DIR}','${INITIAL_SEGMENTATION}','${CLUSTER_DIR}','${STYLE_INPUTS}','${SPLIT_OPTIONS_FILE}',${MASKS2GENERATE}); exit;"
+matlab -nodisplay -nodesktop -nosplash -nojvm -r "addpath('${MATLAB_SCRIPTS}/clustering4singleExperiment'); addpath(genpath('${PIPELINE_SCRIPTS}')); kaggleStartMatlab; setUpConfigAndDB; prepareClustering4singleClusterFcn('${MERGED_IMAGES_DIR}','${INITIAL_SEGMENTATION}','${CLUSTER_DIR}','${STYLE_INPUTS}','${SPLIT_OPTIONS_FILE}',${MASKS2GENERATE},'${OBJ_TYPE}'); exit;"
 if [ $? -ne 0 ]
 then
     echo ERROR: "Error during style input preparation"
