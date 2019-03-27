@@ -30,12 +30,8 @@ failed=false;
 for i=1:n
 %     imName=fullfile(src,name,'out',sprintf('%s_%03d.png.png',name,i));    % file name was too long!
     imName=fullfile(src,name,'out',sprintf('%03d.png.png',i));
-<<<<<<< HEAD
-    if ~exist(imName,'file')
-=======
-    if ~exist(imName,'file') 
-        
->>>>>>> 8367128bae9a2bb933c46d57dfedf80d6404b88e
+
+    if ~exist(imName,'file')       
         fprintf('file %s does not exist\n',imName);
         missCount=missCount+1;
         imName=fullfile(src,name,'masks',sprintf('%03d.png',i));
