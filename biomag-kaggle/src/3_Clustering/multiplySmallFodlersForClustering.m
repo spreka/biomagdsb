@@ -14,7 +14,7 @@ for i=3:numel(dirList)
     
     fileList = dir([inFolder filesep dirList(i).name filesep]);
     if numel(fileList)-2 <= minToAction % minus 2 is to get rid of . and .. because of ambiguous extentions
-        disp(['-----> Small number of files in folder: ' inFolder dirList(i).name ' -- Split started.']);
+        disp(['-----> Small number of files in folder: ' inFolder '/' dirList(i).name ' -- Split started.']);
         for j=3:numel(fileList)
             if fileList(j).isdir
                 continue;

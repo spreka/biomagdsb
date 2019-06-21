@@ -8,7 +8,7 @@ stdA = std(estimatedAreas);
 for i=1:numel(maskArray)
     A = regionprops(maskArray{i},'Area');
     currentA = normrnd(meanA,min(meanA*0.2,stdA)); %the standard deviation is maximized by the 20% of the average mean
-    imresize(maskArray{i},currentA/A.Area,'nearest');
+    maskArray{i} = imresize(maskArray{i},currentA/A.Area,'nearest');
 end
 
 end

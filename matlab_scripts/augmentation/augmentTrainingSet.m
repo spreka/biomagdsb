@@ -31,7 +31,7 @@ elseif styleData == 1
     noiseProb = 0.2;       
     colorFlip = 0.0;
     maskFormat = '.tiff'; % TODO change back to .png
-    stepSize = 6%10;
+    stepSize = 6;%10;
 elseif styleData == 2
     % augmentaiton for validation RCNN
     numAugment = 1;
