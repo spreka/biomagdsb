@@ -19,6 +19,7 @@ Please see requirements.txt that can also be run as a bash script (Linux) or alt
 	git clone https://github.com/matterport/Mask_RCNN.git
 	git checkout 53afbae5c5159b5a10ecd024a72b883a2b058314
 ```
+
 - You will need to set the path of your cloned Mask R-CNN folder in the scripts below
 - See documentation in .pdf on how to use functionalities of our pipeline
 
@@ -74,9 +75,20 @@ See further details in the documentation.
 
 # Training
 
+Obtain our pre-trained classifier *pretrainedDistanceLearner.mat* for training by either:
+- Downloading it from [our google drive](https://drive.google.com/drive/folders/1RC4Iy3qkfU1cF6bZFx3JOXvzqsvyT3J4?usp=sharing). Make sure you have *pretrainedDistanceLearner.mat* in the folder \kaggle_workflow\inputs\clustering\
+
+	***or***
+
+- Installing Git LFS (Large File Storage) by following the instructions on [their installation guide](https://github.com/git-lfs/git-lfs/wiki/Installation) or [their github page](https://git-lfs.github.com/) according to your operating system. Make sure you set it up after installation:
+
+	```
+		git lfs install
+	```
+
 WARNING: it is possible to overwrite our provided trained models in this step. See documentation for details.
 
-We include a .mat file with the validation image names we used for the Kaggle DSB2018 competition. If you would like to use your own images for this pupose, see **Custom validation** above.
+We include a .mat file with the validation image names we used for the Kaggle DSB2018 competition. If you would like to use your own images for this pupose, see [**Custom validation**](#custom-validation) above.
 
 WARNING: training will override the U-Net models we provide, we advise you make a copy of them first from the following relative path:
 \kaggle_workflow\unet\
