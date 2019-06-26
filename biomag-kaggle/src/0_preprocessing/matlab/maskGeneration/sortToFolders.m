@@ -13,7 +13,7 @@ function sortToFolders(inputDir,targetDir,csvFile)
     end
 
     d = dir(fullfile(inputDir));
-    T = readtable(csvFile);
+    T = readtable(csvFile,'Delimiter',',');
 
     % create thrash dir
     tdir=fullfile(targetDir,'thrash');

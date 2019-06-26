@@ -126,8 +126,13 @@ function [i,img,topRow,success] = placeInRandomMode(mask,imgSize,img,i,topRow)
         tryMask(tryMask>0) = i;
         img = img + tryMask;
         currentMaskTops = zeros(1,w);
-        for k = 1:w
-            currentMaskTops(k) = find(tryMask(:,randC+k-1),1,'first');
+        for k = 1:w            
+            singleMaskTop = find(tryMask(:,randC+k-1),1,'first');
+            if ~isempty(singleMaskTop)
+                currentMaskTops(k) = singleMaskTop;
+            else
+                currentMaskTops(k) = -Inf;
+            end
         end
         topRow(randC:randC+w-1) = max(topRow(randC:randC+w-1),currentMaskTops);
         i = i + 1;
