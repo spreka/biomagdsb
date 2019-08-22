@@ -90,9 +90,7 @@ rem echo "outputs_dir: " %outputs_dir%
 
 :: set pythonpath
 rem Check if pathToInsert is not already in pythonpath
-if "!pythonpath:%pathToInsert%=!" equ "%pythonpath%" (
-    setx pythonpath "%pythonpath%;%pathToInsert%"
-)
+echo %pythonpath%|find /i "%pathToInsert%">nul  || set pythonpath=%pythonpath%;%pathToInsert%
 
 echo "pythonpath: " %pythonpath%
 

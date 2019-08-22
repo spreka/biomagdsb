@@ -207,8 +207,24 @@ function [img,topRow] = placeMask(mask,img,c,bottomStart,oP,i,topRow,nonOverlapO
        end
     end
     mask(mask>0) = i;
+    % ---- bugfix ----
+    % if the current mask cannot be placed on the image
+    if isempty(bottomStart)
+        topRow = calcTopRow(img);
+        return;
+    end
+    % ---- bugfix end ----
     for j=1:w
-        img(H-bottomStart-h+1+mS(j):H-bottomStart-h+1+mE(j),c+j-1) = mask(mS(j):mE(j),j);
+        % ---- bugfix2 ----
+        startidx=H-bottomStart-h+1+mS(j);
+        endidx=H-bottomStart-h+1+mE(j);
+        % if the current mask position is out of the image
+        if startidx<1 || endidx<startidx
+            difi=1-startidx; startidx=1; mS(j)=mS(j)+difi;
+        end
+        img(startidx:endidx,c+j-1) = mask(mS(j):mE(j),j);
+        % ---- bugfix2 end ----
+        %img(H-bottomStart-h+1+mS(j):H-bottomStart-h+1+mE(j),c+j-1) = mask(mS(j):mE(j),j);
     end
     topRow(c:c+w-1) = bottomStart + h - mS;   
     
