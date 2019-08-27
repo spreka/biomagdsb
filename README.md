@@ -10,7 +10,7 @@ Some resulting masks obtained by our method:
 
 Please see requirements.txt that can also be run as a bash script (Linux) or alternatively, you can copy the install commands to console corresponding to your system (command prompt (Windows) / terminal (Linux)) and execute them.
 
-- Install CUDA 9.0 and CuDNN 7.0 as well as MATLAB Runtime (Release 2017a or later) appropriate for your system.
+- Install CUDA 9.0 and CuDNN 7.0 as well as MATLAB (Release 2017a or later) appropriate for your system.
 	Currently, Linux and Windows implementation is provided.
 - See requirements.txt for python packages to install.
 - Download Matterport's Mask R-CNN github repository or clone directly with git and revert to the commit our method uses:
