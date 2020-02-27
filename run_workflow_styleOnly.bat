@@ -72,8 +72,8 @@ echo "pythonpath: " %pythonpath%
 
 
 ::::::::::::::::::: STYLE TRANSFER :::::::::::::::::::
-::python "%pipeline_scripts%\7_styaug\learn-styles2_win.py" --work_dir %style_inputs%\0 --cur_dir %pipeline_scripts%
-::python "%pipeline_scripts%\7_styaug\learn-styles2_win.py" --work_dir %style_inputs%\1 --cur_dir %pipeline_scripts%
+python "%pipeline_scripts%\7_styaug\learn-styles2_win.py" --work_dir %style_inputs%\0 --cur_dir %pipeline_scripts%
+python "%pipeline_scripts%\7_styaug\learn-styles2_win.py" --work_dir %style_inputs%\1 --cur_dir %pipeline_scripts%
 start cmd /k start_visdom.bat %pyVirtPath%
 python "%pipeline_scripts%\7_styaug\apply-styles_win.py" --work_dir %style_inputs%\0 --cur_dir %pipeline_scripts%
 python "%pipeline_scripts%\7_styaug\apply-styles_win.py" --work_dir %style_inputs%\1 --cur_dir %pipeline_scripts%

@@ -42,6 +42,13 @@ while i<=length(maskArray) && ~full && i<=nofCells
     %fetch mask
     mask = maskArray{i};
     
+    % ----
+    % skip the current mask if it's larger than the image size
+    if any(size(mask)>imgSize) || isempty(mask)
+        i=i+1;
+        continue;
+    end
+    % ----
     
     %do while to rotate if the image seems to be full from this direction    
     
@@ -112,6 +119,15 @@ function [i,img,topRow,success] = placeInRandomMode(mask,imgSize,img,i,topRow)
     success = false;
     j = 1;
     [h,w] = size(mask);
+
+    % ----
+    % skip this mask if the size doesnt fit the image
+    if h>=imgSize(1) || w>=imgSize(2)
+        i = i + 1;
+        return;
+    end
+    % ----
+    
     while ~success && j<nofTrials
         tryMask = zeros(size(img));
         randR = randi(imgSize(1)-h);
