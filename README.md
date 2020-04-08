@@ -10,8 +10,11 @@ Some resulting masks obtained by our method:
 
 Please see requirements.txt that can also be run as a bash script (Linux) or alternatively, you can copy the install commands to console corresponding to your system (command prompt (Windows) / terminal (Linux)) and execute them.
 
-- Install CUDA 9.0 and CuDNN 7.0 as well as MATLAB (Release 2017a or later) appropriate for your system. Currently, Linux and Windows implementation is provided.
-- MATLAB toolboxes used by the repository are:
+- Install CUDA 9.0 and CuDNN 7.0 as well as MATLAB* (Release 2017a or later) appropriate for your system. Currently, Linux and Windows implementation is provided.
+
+	\*: MATLAB is not required for [fast prediction](#fast-prediction).
+
+- MATLAB* toolboxes used by the repository are:
 	- Image Processing Toolbox
 	- Parallel Computing Toolbox
 	- Statistics and Machine Learning Toolbox
@@ -29,6 +32,10 @@ Please see requirements.txt that can also be run as a bash script (Linux) or alt
 - You will need to set the path of your cloned Mask R-CNN folder in the scripts below
 - See documentation in .pdf on how to use functionalities of our pipeline
 
+## Data
+
+Our method expects images to be 8-bit 3 channels RGB images in .png format. See [our script](#preprocess-test-images) to convert your images.
+
 
 # Prediction
 
@@ -40,7 +47,7 @@ Download our pre-trained models from [our google drive](https://drive.google.com
 You can choose either full prediction with post-processing or fast prediction; the former takes longer to complete and requires more VRAM.
 
 
-**Full prediction pipeline with post-processing**
+## **Full prediction pipeline with post-processing**
 
 Predicts nuclei first with a presegmenter Mask R-CNN model, estimates cell sizes, predicts with multiple U-Net models and ensembles the results, then uses all of the above in a final post-processing step to refine the contours.
 To predict nuclei on images please edit either
@@ -57,7 +64,7 @@ and specify the following 3 directories with their corresponding full paths on y
 Note: [pre-processing scripts](#preprocess-test-images) are provided to convert your test images.
 See further details in the documentation.
 
-**Fast prediction**
+## **Fast prediction**
 
 Predicts nuclei with a presegmenter Mask R-CNN model that generalizes and performs well in varying image types. Produces fast results that can be improved with the post-processing option above.
 To predict fast:
