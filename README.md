@@ -139,8 +139,8 @@ To prepare style transfer on your own images coming from **the same experiment**
 
 After this you are ought to run *these* training scripts instead of the ones above:
 
-- `start_prediction_fast.bat` (Windows)
-- `start_prediction_fast.sh` (Linux)
+- `start_training_singleExperiment.bat` (Windows)
+- `start_training_singleExperiment.sh` (Linux)
 
 as these scripts would use the single experiment data for style transfer learning.
 
