@@ -78,8 +78,12 @@ echo "COPYING DONE"
 mkdir -p "$MASS_TRAIN_UNET/images"
 mkdir -p "$UNET_OUT"
 
-
-
+# copy test1 images to our expected test1 folder
+mkdir -p "$TEST1_DATA"
+mkdir -p "$TEST1_DATA/images/"
+mkdir -p "$TEST1_DATA/masks/"
+cp -r "$TEST1/images/"*.* "$TEST1_DATA/images/"
+cp -r "$TEST1/masks/".* "$TEST1_DATA/masks/"
 
 # ----- execution of pipeline ------
 
