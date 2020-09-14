@@ -1,6 +1,13 @@
 --------- CITATION ---------
 Please cite our paper if you use our method:
-[...]
+Reka Hollandi, Abel Szkalisity, Timea Toth, Ervin Tasnadi, Csaba Molnar, 
+Botond Mathe, Istvan Grexa, Jozsef Molnar, Arpad Balind, Mate Gorbe, 
+Maria Kovacs, Ede Migh, Allen Goodman, Tamas Balassa, Krisztian Koos, 
+Wenyu Wang, Juan Carlos Caicedo, Norbert Bara, Ferenc Kovacs, 
+Lassi Paavolainen, Tivadar Danka, Andras Kriston, Anne Elizabeth Carpenter, 
+Kevin Smith, Peter Horvath (2020): “nucleAIzer: a parameter-free deep 
+learning framework for nucleus segmentation using image style transfer”, 
+Cell Systems, Volume 10, Issue 5, 20 May 2020, Pages 453-458.e6
 
 
 --------- PREREQUISITES ---------

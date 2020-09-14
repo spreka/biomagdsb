@@ -9,6 +9,20 @@ def RCNNConvertInputImage(pImageData):
     if pImageData.shape[2] > 3:
         pImageData = pImageData[:, :, :3]
 
+    # handle 16-bit images
+    if pImageData.dtype==numpy.uint16:
+        #print('uint16 image, stretching intensities before converting to uint8')
+        imagetmp=numpy.zeros((pImageData.shape[0],pImageData.shape[1],3),dtype=numpy.uint8)
+        for ch in range(3):
+            tmp=pImageData[:,:,ch]
+            imgg = tmp.astype(numpy.float)
+            tmp=((imgg-numpy.amin(imgg))*255)/(numpy.amax(imgg)-numpy.amin(imgg));
+            tmp=tmp.astype(numpy.uint8);
+            imagetmp[:,:,ch]=tmp
+        pImageData=imagetmp
+    else:
+        pImageData = pImageData.astype(numpy.uint8)
+
     return pImageData
 
 def MergeMasks(pMasks):
